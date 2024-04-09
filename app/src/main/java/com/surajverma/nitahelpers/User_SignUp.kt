@@ -3,6 +3,7 @@ package com.surajverma.nitahelpers
 import android.R
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -60,26 +61,30 @@ class User_SignUp : AppCompatActivity() {
 
         // Create SignUpData object
         val signUpData = SignUp_Data(name, year, phoneNo, password, branch, hostel, enrollmentNo)
-
-        // Call your API here
-        // Call your API here
-        val call: Call<SignUp_Data> = apiInterface.signup(signUpData)
-
-        call.enqueue(object : Callback<SignUp_Data> {
-            override fun onResponse(call: Call<SignUp_Data>, response: Response<SignUp_Data>) {
-                // Handle success response
+        apiInterface.signup(signUpData).enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@User_SignUp, "Signed up successfully", Toast.LENGTH_SHORT).show()
+                    val message = response.body() // This will contain the response from the API
+                    // Handle the response message here
                 } else {
-                    Toast.makeText(this@User_SignUp, "Couldn't Signup", Toast.LENGTH_SHORT).show()
+                    // Handle error
                 }
             }
 
-            override fun onFailure(call: Call<SignUp_Data>, t: Throwable) {
-                Toast.makeText(this@User_SignUp, "Some Error Occurred", Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                // Handle failure
             }
         })
 
+
+
+//        val response=apiInterface.signup(signUpData)
+//        if(response.isSuccessful){
+//            Toast.makeText(this@User_SignUp, "Signed up successfully", Toast.LENGTH_SHORT).show()
+//        }
+//        else{
+//            Toast.makeText(this@User_SignUp, "errorrrrrrrrrr", Toast.LENGTH_SHORT).show()
+//        }
 
     }
 
