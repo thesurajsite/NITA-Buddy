@@ -13,7 +13,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
+import java.util.Objects
 
 
 class User_SignUp : AppCompatActivity() {
@@ -31,7 +31,7 @@ class User_SignUp : AppCompatActivity() {
         // Initialize Retrofit
         val retrofit: Retrofit by lazy {
             Retrofit.Builder()
-                .baseUrl("https://gharaanah.onrender.com/")
+                .baseUrl("https://gharaanah.onrender.com/engineering/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
         }
@@ -44,11 +44,6 @@ class User_SignUp : AppCompatActivity() {
                 signup()
             }
         }
-
-
-
-
-
 
     }
 
@@ -67,23 +62,21 @@ class User_SignUp : AppCompatActivity() {
         val signUpData = SignUp_Data(name, year, phoneNo, password, branch, hostel, enrollmentNo)
 
         // Call your API here
-        val call: Response<Any> = apiInterface.signup(signUpData)
+        // Call your API here
+        val call: Call<SignUp_Data> = apiInterface.signup(signUpData)
 
-        call.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+        call.enqueue(object : Callback<SignUp_Data> {
+            override fun onResponse(call: Call<SignUp_Data>, response: Response<SignUp_Data>) {
                 // Handle success response
                 if (response.isSuccessful) {
                     Toast.makeText(this@User_SignUp, "Signed up successfully", Toast.LENGTH_SHORT).show()
-
                 } else {
                     Toast.makeText(this@User_SignUp, "Couldn't Signup", Toast.LENGTH_SHORT).show()
-
                 }
             }
 
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Toast.makeText(this@User_SignUp, "Some Error Occured", Toast.LENGTH_SHORT).show()
-
+            override fun onFailure(call: Call<SignUp_Data>, t: Throwable) {
+                Toast.makeText(this@User_SignUp, "Some Error Occurred", Toast.LENGTH_SHORT).show()
             }
         })
 
