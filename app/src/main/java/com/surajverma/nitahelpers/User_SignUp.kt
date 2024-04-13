@@ -15,7 +15,6 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.surajverma.nitahelpers.databinding.ActivityUserSignUpBinding
-import com.surajverma.nitahelpers.databinding.EnterOtpLayoutBinding
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
@@ -71,6 +70,7 @@ class User_SignUp : AppCompatActivity() {
     }
 
     private fun signUpUsingVolley(request: SignUp_Data) {
+        binding.Progressbar.visibility=View.VISIBLE
         val url = "https://gharaanah.onrender.com/engineering/signup"
         jsonObject = JSONObject()
         jsonObject.put("name", request.name)
@@ -88,16 +88,19 @@ class User_SignUp : AppCompatActivity() {
             { jsonData ->
                 val response = jsonData.getString("response")
                 val action = jsonData.getBoolean("action")
+                binding.Progressbar.visibility=View.INVISIBLE
 
                 if(action==true){
                     otpverification()
                 }
+
 
                 Log.w("volley-call", "jsonData= $jsonData jsonObject= $jsonObject")
                 Log.w("volley-call", "action: $action, response: $response")
                 Toast.makeText(this@User_SignUp, response, Toast.LENGTH_SHORT).show()
             },
             {
+                binding.Progressbar.visibility=View.INVISIBLE
                 Toast.makeText(this@User_SignUp, it.message, Toast.LENGTH_SHORT).show()
                 Log.w("volley-call", "${it.message}")
             }
@@ -113,6 +116,7 @@ class User_SignUp : AppCompatActivity() {
         binding.getOTPBtn.visibility=View.GONE
 
         binding.verifyOTPBtn.setOnClickListener {
+            binding.Progressbar.visibility=View.VISIBLE
             val otp=binding.enterOTPEt.text.toString()
 
            if(otp!=""){
@@ -124,12 +128,14 @@ class User_SignUp : AppCompatActivity() {
                    { jsonData ->
                        val response = jsonData.getString("response")
                        val action = jsonData.getBoolean("action")
+                       binding.Progressbar.visibility=View.INVISIBLE
 
                        Log.w("otp-verification", "jsonData= $jsonData jsonObject= $jsonObject")
                        Log.w("otp-verification", "action: $action, response: $response")
                        Toast.makeText(this@User_SignUp, response, Toast.LENGTH_SHORT).show()
                    },
                    {
+                       binding.Progressbar.visibility=View.INVISIBLE
                        Toast.makeText(this@User_SignUp, it.message, Toast.LENGTH_SHORT).show()
                        Log.w("otp-verification", "${it.message}")
                    }

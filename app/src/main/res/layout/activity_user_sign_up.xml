@@ -13,12 +13,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="User Signup"
-        android:textAlignment="center"
         android:layout_gravity="center_horizontal"
-        android:textColor="@color/blue"
-        android:textSize="40dp"
-        />
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Gharaana Signup"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="35dp" />
 
     <EditText
         android:id="@+id/name_et"
