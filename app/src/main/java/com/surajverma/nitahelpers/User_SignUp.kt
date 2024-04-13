@@ -1,6 +1,7 @@
 package com.surajverma.nitahelpers
 
 import android.R
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -23,6 +24,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class User_SignUp : AppCompatActivity() {
     lateinit var binding: ActivityUserSignUpBinding
     private lateinit var apiInterface: SignUp_Interface
+    private lateinit var jsonObject: JSONObject
 
     fun <T> addToRequestQueue(request: Request<T>) {
         requestQueue.add(request)
@@ -39,17 +41,6 @@ class User_SignUp : AppCompatActivity() {
 
         //Spinner TextView
         spinner()
-
-//        // Initialize Retrofit
-//        val retrofit: Retrofit by lazy {
-//            Retrofit.Builder()
-//                .baseUrl("https://gharaanah.onrender.com/engineering/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//        }
-
-        // Create the API interface implementation
-//        apiInterface = retrofit.create(SignUp_Interface::class.java)
 
         binding.signupBtn.setOnClickListener {
             val name = binding.nameEt.text.toString()
@@ -76,54 +67,9 @@ class User_SignUp : AppCompatActivity() {
 
     }
 
-    private suspend fun signup() {
-
-//        //Getting User Input
-//        val name = binding.nameEt.text.toString()
-//        val year = binding.yearSpinner.selectedItem.toString()
-//        val phoneNo = binding.phoneEt.text.toString()
-//        val password = binding.passwordEt.text.toString()
-//        val branch = binding.branchSpinner.selectedItem.toString()
-//        val hostel = binding.hostelSpinner.selectedItem.toString()
-//        val enrollmentNo = binding.enrollmentEt.text.toString()
-
-        // Create SignUpData object
-//        val signUpData = SignUp_Data(name, year, phoneNo, password, branch, hostel, enrollmentNo)
-//        val call = apiInterface.signup(signUpData)
-//
-//        try{
-//            call.enqueue(object: Callback<SignUpResponse>{
-//                override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-//                    Log.w("api-call", response.toString())
-//                    val body = response.body()
-//                    //
-//                    Log.w("api-call", (body).toString())
-//                }
-//
-//
-//                override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-//                    //nothing
-//                }
-//
-//            })
-//        }
-//        catch(e: Exception){
-//            Toast.makeText(this@User_SignUp, e.message, Toast.LENGTH_LONG).show();
-//        }
-
-//        val response=apiInterface.signup(signUpData)
-//        if(response.isSuccessful){
-//            Toast.makeText(this@User_SignUp, "Signed up successfully", Toast.LENGTH_SHORT).show()
-//        }
-//        else{
-//            Toast.makeText(this@User_SignUp, "errorrrrrrrrrr", Toast.LENGTH_SHORT).show()
-//        }
-
-    }
-
     private fun signUpUsingVolley(request: SignUp_Data) {
         val url = "https://gharaanah.onrender.com/engineering/signup"
-        val jsonObject = JSONObject()
+        jsonObject = JSONObject()
         jsonObject.put("name", request.name)
         jsonObject.put("phoneNo", request.phoneNo)
         jsonObject.put("branch", request.branch)
@@ -132,12 +78,19 @@ class User_SignUp : AppCompatActivity() {
         jsonObject.put("enrollmentNo", request.enrollmentNo)
         jsonObject.put("hostel", request.hostel)
 
+
+
         val request = JsonObjectRequest(
             Request.Method.POST, url, jsonObject,
             { jsonData ->
-                val action = jsonData.getBoolean("action")
                 val response = jsonData.getString("response")
+                val action = jsonData.getBoolean("action")
 
+                if(action==true){
+                    otpverification()
+                }
+
+                Log.w("volley-call", "jsonData= $jsonData jsonObject= $jsonObject")
                 Log.w("volley-call", "action: $action, response: $response")
                 Toast.makeText(this@User_SignUp, response, Toast.LENGTH_SHORT).show()
             },
@@ -148,6 +101,14 @@ class User_SignUp : AppCompatActivity() {
         )
 
         addToRequestQueue(request)
+    }
+
+    private fun otpverification() {
+
+
+
+
+        jsonObject.put("otp", "otp")
     }
 
     private fun spinner() {

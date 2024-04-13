@@ -58,4 +58,7 @@ dependencies {
     //Volley
     implementation("com.android.volley:volley:1.2.1")
 
+    //sdp
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+
 }
