@@ -167,7 +167,7 @@
         android:id="@+id/getOTP_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Get OTP"
+        android:text="Signup With OTP"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_marginLeft="20dp"
@@ -190,19 +190,6 @@
         android:background="#4AB524"
         />
 
-    <Button
-        android:visibility="gone"
-        android:id="@+id/signup_to_login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/blue"
-        />
 
     <ProgressBar
         android:id="@+id/Progressbar"
@@ -214,6 +201,15 @@
         android:visibility="invisible"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         />
+
+    <TextView
+        android:id="@+id/signupToLogin_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login Here"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_20sdp"/>
 
 
 </LinearLayout>
