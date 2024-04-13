@@ -1,10 +1,12 @@
 package com.surajverma.nitahelpers
 
-import android.R
+import android.R as AndroidResources
+import com.surajverma.nitahelpers.R
 import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +15,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.surajverma.nitahelpers.databinding.ActivityUserSignUpBinding
+import com.surajverma.nitahelpers.databinding.EnterOtpLayoutBinding
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 import retrofit2.Call
@@ -42,7 +45,7 @@ class User_SignUp : AppCompatActivity() {
         //Spinner TextView
         spinner()
 
-        binding.signupBtn.setOnClickListener {
+        binding.getOTPBtn.setOnClickListener {
             val name = binding.nameEt.text.toString()
             val year = binding.yearSpinner.selectedItem.toString()
             val phoneNo = binding.phoneEt.text.toString()
@@ -105,29 +108,57 @@ class User_SignUp : AppCompatActivity() {
 
     private fun otpverification() {
 
+        binding.enterOTPEt.visibility=View.VISIBLE
+        binding.verifyOTPBtn.visibility=View.VISIBLE
+        binding.getOTPBtn.visibility=View.GONE
+
+        binding.verifyOTPBtn.setOnClickListener {
+            val otp=binding.enterOTPEt.text.toString()
+
+           if(otp!=""){
+               jsonObject.put("otp", otp)
+
+               val url = "https://gharaanah.onrender.com/engineering/otpverify"
+               val request = JsonObjectRequest(
+                   Request.Method.POST, url, jsonObject,
+                   { jsonData ->
+                       val response = jsonData.getString("response")
+                       val action = jsonData.getBoolean("action")
+
+                       Log.w("otp-verification", "jsonData= $jsonData jsonObject= $jsonObject")
+                       Log.w("otp-verification", "action: $action, response: $response")
+                       Toast.makeText(this@User_SignUp, response, Toast.LENGTH_SHORT).show()
+                   },
+                   {
+                       Toast.makeText(this@User_SignUp, it.message, Toast.LENGTH_SHORT).show()
+                       Log.w("otp-verification", "${it.message}")
+                   }
+               )
+
+               addToRequestQueue(request)
 
 
-
-        jsonObject.put("otp", "otp")
+           }
+        }
     }
 
     private fun spinner() {
 
         // Hostel Spinner
         val list_of_hostels= arrayListOf<String>("Select Hostel","Aryabhatta", "RNT")
-        val hostelSpinnerAdapter= ArrayAdapter(this, R.layout.simple_spinner_item, list_of_hostels)
+        val hostelSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_hostels)
         hostelSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.hostelSpinner.adapter=hostelSpinnerAdapter
 
         //Branch Spinner
         val list_of_branch= arrayListOf<String>("Select Branch", "Computer Science", "Electronucs", "Mechanical", "Civil", "Electrical", "Chemical", "Production", "Instrumentation", "BioTech", "IIIT")
-        val branchSpinnerAdapter= ArrayAdapter(this, R.layout.simple_spinner_item, list_of_branch)
+        val branchSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_branch)
         branchSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.branchSpinner.adapter=branchSpinnerAdapter
 
         //Year Spinner
         val list_of_year= arrayListOf<String>("Select Year", "1st Year", "2nd Year", "3rd Year", "4th Year")
-        val yearSpinnerAdapter= ArrayAdapter(this, R.layout.simple_spinner_item, list_of_year)
+        val yearSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_year)
         yearSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.yearSpinner.adapter=yearSpinnerAdapter
 

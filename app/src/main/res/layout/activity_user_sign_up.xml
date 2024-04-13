@@ -143,9 +143,28 @@
         android:inputType="number"
         />
 
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/enterOTP_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter OTP"
+        android:textColorHint="@color/black"
+        android:background="@drawable/custom_input"
+        android:drawablePadding="10dp"
+        android:textSize="25dp"
+        android:paddingStart="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        />
+
 
     <Button
-        android:id="@+id/signup_btn"
+        android:id="@+id/getOTP_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Get OTP"
@@ -155,6 +174,20 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="35dp"
         android:background="@color/blue"
+        />
+
+    <Button
+        android:visibility="gone"
+        android:id="@+id/verifyOTP_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verify OTP"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="35dp"
+        android:background="#4AB524"
         />
 
     <Button
