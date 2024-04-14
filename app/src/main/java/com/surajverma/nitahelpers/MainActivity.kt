@@ -1,12 +1,45 @@
 package com.surajverma.nitahelpers
 
+import SharedPreferences.SharedPreferencesManager
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Vibrator
+import android.widget.Toast
+import com.surajverma.nitahelpers.databinding.ActivityMainBinding
+import com.surajverma.nitahelpers.databinding.ActivityUserLoginBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+    private lateinit var SharedPreferencesManager: SharedPreferencesManager
+    private lateinit var vibrator: Vibrator
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding=ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        SharedPreferencesManager= SharedPreferencesManager(this)
+        vibrator=getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+
+        //If User Not Logged In, Send it to Login Activity
+        if(SharedPreferencesManager.getLoginState()==false){
+            startActivity(Intent(this, User_Login_Activity::class.java))
+            finish()
+        }
+
+        binding.logoutBtn.setOnClickListener {
+            vibrator.vibrate(50)
+
+            SharedPreferencesManager.updateLoginState(false)
+            SharedPreferencesManager.updateUserToken("")
+            Toast.makeText(this, "Logged Out Successfully", Toast.LENGTH_SHORT).show()
+
+            startActivity(Intent(this, User_Login_Activity::class.java))
+            finish()
+        }
+
+
 
 
     }

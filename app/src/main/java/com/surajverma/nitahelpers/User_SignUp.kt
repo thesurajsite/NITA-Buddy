@@ -1,5 +1,6 @@
 package com.surajverma.nitahelpers
 
+import SharedPreferences.SharedPreferencesManager
 import android.R as AndroidResources
 import com.surajverma.nitahelpers.R
 import android.app.Dialog
