@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".User_SignUp">
+    tools:context=".User_Login_Activity">
 
 
     <TextView
@@ -60,7 +60,7 @@
         />
 
     <Button
-        android:id="@+id/getOTP_btn"
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"
