@@ -6,7 +6,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.surajverma.nitahelpers.databinding.ActivityMainBinding
 import com.surajverma.nitahelpers.databinding.ActivityUserLoginBinding
 
@@ -39,8 +43,28 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        //Default Fragment on StartUp
+        replaceFragment(Home_fragment())
+        binding.bottomNavigation.setOnItemSelectedListener {
+
+            when(it.itemId){
+                R.id.home -> replaceFragment(Home_fragment())
+                R.id.profile -> replaceFragment(Profile_Fragment())
+            }
+
+            return@setOnItemSelectedListener true
+        }
+
+
 
 
 
     }
+
+   private fun replaceFragment(fragment: Fragment){
+       val fragmentManager=supportFragmentManager
+       val fragmentTransaction=fragmentManager.beginTransaction()
+       fragmentTransaction.replace(R.id.frameLayout, fragment)
+       fragmentTransaction.commit()
+   }
 }

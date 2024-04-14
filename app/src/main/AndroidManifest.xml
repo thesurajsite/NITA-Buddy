@@ -16,24 +16,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NITAHelpers"
         tools:targetApi="31">
+
         <activity
             android:name=".User_Login_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.SignupLoginActivity"/>
+
         <activity
             android:name=".User_SignUp"
-            android:exported="false">
-        </activity>
+            android:exported="false"
+            android:theme="@style/Theme.SignupLoginActivity"/>
+
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-
+            android:exported="true"
+            android:theme="@style/Theme.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"
