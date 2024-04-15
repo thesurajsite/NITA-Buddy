@@ -2,14 +2,14 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/orange">
+    android:background="@color/blue">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="G h a r a a n a"
         android:textSize="@dimen/_20sdp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:fontFamily="@font/allerta_stencil"
         android:layout_gravity="center_horizontal"/>
 
