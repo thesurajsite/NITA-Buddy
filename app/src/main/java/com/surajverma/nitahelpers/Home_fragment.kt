@@ -32,16 +32,16 @@ class Home_fragment : Fragment() {
         SharedPreferencesManager= SharedPreferencesManager(requireContext())
         vibrator=requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
 
-        binding.logoutBtn.setOnClickListener {
-            vibrator.vibrate(50)
-
-            SharedPreferencesManager.updateLoginState(false)
-            SharedPreferencesManager.updateUserToken("")
-            Toast.makeText(requireContext(), "Logged Out Successfully", Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(requireContext(), User_Login_Activity::class.java))
-            (activity as AppCompatActivity).finish()
-        }
+//        binding.logoutBtn.setOnClickListener {
+//            vibrator.vibrate(50)
+//
+//            SharedPreferencesManager.updateLoginState(false)
+//            SharedPreferencesManager.updateUserToken("")
+//            Toast.makeText(requireContext(), "Logged Out Successfully", Toast.LENGTH_SHORT).show()
+//
+//            startActivity(Intent(requireContext(), User_Login_Activity::class.java))
+//            (activity as AppCompatActivity).finish()
+//        }
 
 
 

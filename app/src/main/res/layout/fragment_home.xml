@@ -3,16 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Home_fragment">
+    tools:context=".Home_fragment"
+    android:background="@color/blue">
 
-    <Button
-        android:id="@+id/logout_btn"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Home"
+        android:textSize="@dimen/_25sdp"
         android:layout_gravity="center"
-        android:backgroundTint="@color/red"
-        android:text="Logout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_20sdp" />
-
+        android:fontFamily="@font/allerta_stencil"
+        android:textColor="@color/white"/>
 </FrameLayout>

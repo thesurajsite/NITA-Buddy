@@ -66,5 +66,6 @@ class MainActivity : AppCompatActivity() {
        val fragmentTransaction=fragmentManager.beginTransaction()
        fragmentTransaction.replace(R.id.frameLayout, fragment)
        fragmentTransaction.commit()
+       vibrator.vibrate(50)
    }
 }
