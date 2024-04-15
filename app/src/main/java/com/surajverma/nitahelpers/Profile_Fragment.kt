@@ -49,7 +49,7 @@ class Profile_Fragment : Fragment() {
         jsonObject.put("token", SharedPreferencesManager.getUserToken())
 
         binding.Progressbar.visibility=View.VISIBLE
-        Toast.makeText(requireContext(), "Loading User Data...", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Loading User Data...", Toast.LENGTH_SHORT).show()
         val url = "https://gharaanah.onrender.com/engineering/profile"
         val request = object : JsonObjectRequest(
             Method.GET, url, jsonObject,
@@ -116,6 +116,4 @@ class Profile_Fragment : Fragment() {
             (activity as AppCompatActivity).finish()
         }
     }
-
-
 }
