@@ -19,16 +19,7 @@
         android:background="@color/blue"
         android:layout_above="@id/bottomNavigation"/>
 
-    <Button
-        android:visibility="invisible"
-        android:id="@+id/logout_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:backgroundTint="@color/red"
-        android:text="Logout"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_20sdp" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"

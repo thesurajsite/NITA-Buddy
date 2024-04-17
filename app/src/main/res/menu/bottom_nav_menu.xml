@@ -7,6 +7,10 @@
         android:iconTint="@color/blue"
         />
 
+    <item android:title="Create Request"
+        android:id="@+id/createRequest"
+        android:icon="@drawable/plus_icon"/>
+
     <item android:title="Profile"
         android:id="@+id/profile"
         android:icon="@drawable/person"

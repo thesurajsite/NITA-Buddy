@@ -32,16 +32,6 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.logoutBtn.setOnClickListener {
-            vibrator.vibrate(50)
-
-            SharedPreferencesManager.updateLoginState(false)
-            SharedPreferencesManager.updateUserToken("")
-            Toast.makeText(this, "Logged Out Successfully", Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(this, User_Login_Activity::class.java))
-            finish()
-        }
 
         //Default Fragment on StartUp
         replaceFragment(Home_fragment())
@@ -49,7 +39,9 @@ class MainActivity : AppCompatActivity() {
 
             when(it.itemId){
                 R.id.home -> replaceFragment(Home_fragment())
+                R.id.createRequest -> replaceFragment(Create_Request_Fragment())
                 R.id.profile -> replaceFragment(Profile_Fragment())
+
             }
 
             return@setOnItemSelectedListener true
