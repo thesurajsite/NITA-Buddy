@@ -21,19 +21,20 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_10sdp"
             app:cardCornerRadius="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_30sdp"
-            android:layout_marginRight="@dimen/_30sdp">
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Request"
-                android:textSize="@dimen/_30sdp"
+                android:textSize="@dimen/_25sdp"
                 android:textColor="@color/black"
                 android:paddingLeft="@dimen/_10sdp"
                 android:paddingRight="@dimen/_10sdp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/allerta_stencil"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -74,6 +75,7 @@
                         android:textSize="@dimen/_15sdp"/>
 
                     <Button
+                        android:id="@+id/amazonOrder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order Now"
@@ -115,6 +117,7 @@
                         android:textSize="@dimen/_15sdp"/>
 
                     <Button
+                        android:id="@+id/flipkartOrder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order Now"
@@ -170,6 +173,7 @@
                         android:textSize="@dimen/_15sdp"/>
 
                     <Button
+                        android:id="@+id/samratOrder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order Now"
@@ -211,6 +215,7 @@
                         android:textSize="@dimen/_15sdp"/>
 
                     <Button
+                        android:id="@+id/johnOrder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order Now"
@@ -268,6 +273,7 @@
                         android:textSize="@dimen/_15sdp"/>
 
                     <Button
+                        android:id="@+id/wowOrder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Order Now"
