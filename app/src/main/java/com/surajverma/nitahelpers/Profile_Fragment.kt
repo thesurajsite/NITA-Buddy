@@ -89,9 +89,6 @@ class Profile_Fragment : Fragment() {
 
         addtoRequestQueue(request)
 
-
-
-
     }
 
     private fun fetchProfileData() {
