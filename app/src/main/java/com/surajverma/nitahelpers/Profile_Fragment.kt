@@ -43,13 +43,62 @@ class Profile_Fragment : Fragment() {
 
         SharedPreferencesManager= SharedPreferencesManager(requireContext())
         vibrator=requireContext().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        binding.Progressbar.visibility=View.VISIBLE
+
+        fetchProfileData()
+        fetchMyRequests()
+
+
+
+
+        binding.logoutBtn.setOnClickListener{
+            logout()
+        }
+
+
+        return binding.root
+    }
+
+    private fun fetchMyRequests() {
+
+        //API Call
+        jsonObject= JSONObject()
+        val url = "https://gharaanah.onrender.com/engineering/studentrequest"
+        val request = object : JsonObjectRequest(
+            Method.GET, url, jsonObject,
+            { jsonData ->
+                val action=jsonData.getBoolean("action")
+
+
+                Log.d("my-requests", "$jsonData")
+                //Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+            },
+            {
+                Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
+                Log.e("my-requests", "Error: ${it.message}")
+            }
+        ) {
+            // Override getHeaders to add the Authorization header
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                val token=SharedPreferencesManager.getUserToken()
+                headers["Authorization"] = "Bearer $token"
+                return headers
+            }
+        }
+
+        addtoRequestQueue(request)
+
+
+
+
+    }
+
+    private fun fetchProfileData() {
 
         //API CALLING
         jsonObject= JSONObject()
         jsonObject.put("token", SharedPreferencesManager.getUserToken())
-
-        binding.Progressbar.visibility=View.VISIBLE
-//        Toast.makeText(requireContext(), "Loading User Data...", Toast.LENGTH_SHORT).show()
         val url = "https://gharaanah.onrender.com/engineering/profile"
         val request = object : JsonObjectRequest(
             Method.GET, url, jsonObject,
@@ -94,14 +143,6 @@ class Profile_Fragment : Fragment() {
 
         addtoRequestQueue(request)
 
-        binding.logoutBtn.setOnClickListener{
-            logout()
-        }
-
-
-
-
-        return binding.root
     }
 
     private fun logout() {
