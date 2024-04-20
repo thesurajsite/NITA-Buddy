@@ -311,7 +311,7 @@ class Create_Request_Fragment : Fragment() {
         val currentDateTime = LocalDateTime.now()
 
         // Format the date and time with the desired pattern (dd-MM HH:mm)
-        val formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("HH:mm | dd-MM-yyyy")
         val DateTime = currentDateTime.format(formatter).toString()
 
         return DateTime

@@ -7,5 +7,6 @@
     <color name="red">#F44336</color>
     <color name="orange">#ff9900</color>
     <color name="yellow">#FFEB3B</color>
+    <color name="light_sky">#bee0ec</color>
 
 </resources>

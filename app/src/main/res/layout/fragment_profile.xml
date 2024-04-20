@@ -53,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingBottom="@dimen/_500sdp">
+            android:paddingBottom="@dimen/_10sdp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -194,15 +194,41 @@
                     android:gravity="center"
                     app:layout_constraintTop_toBottomOf="@id/phone_tv"/>
 
+                <TextView
+                    android:id="@+id/myRequestTextview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="My Requests"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/logout_btn"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_20sdp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_shape"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp" />
+
+                <ProgressBar
+                    android:id="@+id/recyclerViewProgressBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:indeterminate="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_50sdp"
+                    android:layout_marginRight="@dimen/_50sdp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/myRequestTextview" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/myRequestRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@id/logout_btn"
+                    app:layout_constraintTop_toBottomOf="@id/myRequestTextview"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginLeft="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"/>
+                    android:layout_marginRight="@dimen/_10sdp" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
