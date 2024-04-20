@@ -91,45 +91,48 @@ class Profile_Fragment : Fragment() {
             Method.GET, url, jsonObject,
             { jsonData ->
                 val action=jsonData.getBoolean("action")
-                val orderNITList=jsonData.getJSONArray("orderNITList")
+                if(action==true){
+                    val orderNITList=jsonData.getJSONArray("orderNITList")
+                    for (i in (orderNITList.length() - 1) downTo 0) {
+                        val orderObject = orderNITList.getJSONObject(i)
+                        // Extract specific fields from the orderObject
+                        val orderId = orderObject.getString("orderId")
+                        val phoneNo=orderObject.getString("phoneNo")
+                        val type = orderObject.getString("type")
+                        var store = orderObject.getString("storeName")
+                        val orderTime = orderObject.getString("orderTime")
+                        val orderstatus = "Status: "+orderObject.getString("orderStatus")
+                        val orderDetails = orderObject.getString("orderDetails")
+                        val orderPoint = orderObject.getString("orderPoint")
 
-                for (i in (orderNITList.length() - 1) downTo 0) {
-                    val orderObject = orderNITList.getJSONObject(i)
-                    // Extract specific fields from the orderObject
-                    val orderId = orderObject.getString("orderId")
-                    val phoneNo=orderObject.getString("phoneNo")
-                    val type = orderObject.getString("type")
-                    var store = orderObject.getString("storeName")
-                    val orderTime = orderObject.getString("orderTime")
-                    val orderstatus = "Status: "+orderObject.getString("orderStatus")
-                    val orderDetails = orderObject.getString("orderDetails")
-                    val orderPoint = orderObject.getString("orderPoint")
+                        // Image Allocation
+                        var image=R.drawable.amazon
+                        if(store=="amazon"){
+                            image=R.drawable.amazon
+                        }
+                        else if(store=="flipkart"){
+                            image=R.drawable.flipkart
+                        }
+                        else if(store=="Samrat"){
+                            image=R.drawable.flipkart
+                        }
+                        else if(store=="John"){
+                            image=R.drawable.john
+                        }
+                        else if(store=="Joydip"){
+                            image=R.drawable.wow
+                        }
 
-                    // Image Allocation
-                    var image=R.drawable.amazon
-                    if(store=="amazon"){
-                         image=R.drawable.amazon
-                    }
-                    else if(store=="flipkart"){
-                        image=R.drawable.flipkart
-                    }
-                    else if(store=="Samrat"){
-                        image=R.drawable.flipkart
-                    }
-                    else if(store=="John"){
-                        image=R.drawable.john
-                    }
-                    else if(store=="Joydip"){
-                        image=R.drawable.wow
-                    }
+                        store = store.substring(0,1).toUpperCase()+store.substring(1)
 
-                    store = store.substring(0,1).toUpperCase()+store.substring(1)
+                        // Create a myRequest_model object and add it to the ArrayList
+                        arrMyRequest.add(myRequest_model(image,orderId, type, store, orderTime, orderstatus, orderDetails, orderPoint))
 
-                    // Create a myRequest_model object and add it to the ArrayList
-                    arrMyRequest.add(myRequest_model(image,orderId, type, store, orderTime, orderstatus, orderDetails, orderPoint))
+                    }
+                    adapter.notifyDataSetChanged()
 
                 }
-                adapter.notifyDataSetChanged()
+
 
                 binding.recyclerViewProgressBar.visibility=View.INVISIBLE
                 Log.d("my-requests", "$jsonData")
@@ -149,7 +152,6 @@ class Profile_Fragment : Fragment() {
                 return headers
             }
         }
-
         addtoRequestQueue(request)
 
     }
