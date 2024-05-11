@@ -81,6 +81,18 @@
                 android:paddingLeft="@dimen/_5sdp"
                 android:paddingRight="@dimen/_5sdp" />
 
+            <ProgressBar
+                android:id="@+id/ProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:indeterminate="true"
+                android:layout_marginTop="@dimen/_50sdp"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal" />
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/studentRequestRecyclerView"
                 android:layout_width="match_parent"

@@ -2,6 +2,8 @@ package com.surajverma.nitahelpers
 
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Vibrator
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest: ArrayList<studentRequest_model>) : RecyclerView.Adapter<studentRequest_RecyclerAdapter.ViewHolder>() {
 
@@ -17,7 +20,7 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
 
 
         // FROM RECYCLER VIEW LAYOUT
-        val storeName=itemView.findViewById<TextView>(R.id.storeName)
+        val studentName=itemView.findViewById<TextView>(R.id.studentName)
         val orderId=itemView.findViewById<TextView>(R.id.orderId)
         val orderTime=itemView.findViewById<TextView>(R.id.orderTime)
         val orderDetails=itemView.findViewById<TextView>(R.id.orderDetails)
@@ -54,7 +57,7 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
         holder.orderId.text=arrStudentRequest[position].orderId
         holder.orderTime.text=arrStudentRequest[position].orderTime
         holder.orderDetails.text=arrStudentRequest[position].orderDetails
-        holder.storeName.text=arrStudentRequest[position].store
+        holder.studentName.text=arrStudentRequest[position].studentName
         holder.orderStatus.text=arrStudentRequest[position].orderstatus
         holder.phoneNo.text=arrStudentRequest[position].phoneNo
         holder.storeImage.setImageResource(arrStudentRequest[position].image)
@@ -72,6 +75,14 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
                 holder.vibrator.vibrate(50)
                 holder.tapLayout.visibility=View.GONE
             }
+        }
+
+        holder.phoneNo.setOnClickListener {
+            holder.vibrator.vibrate(50)
+            Toast.makeText(context, "Calling " + arrStudentRequest[position].phoneNo, Toast.LENGTH_SHORT).show()
+            val callintent = Intent(Intent.ACTION_DIAL)
+            callintent.setData(Uri.parse("tel:" + arrStudentRequest[position].phoneNo))
+            context.startActivity(callintent)
         }
 
     }

@@ -9,5 +9,6 @@ class studentRequest_model (
     var orderstatus: String,
     var orderDetails: String,
     var orderPoint: String,
+    var studentName: String,
     var phoneNo: String
 )
