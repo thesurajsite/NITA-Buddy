@@ -75,10 +75,7 @@ class Profile_Fragment : Fragment() {
 
 //        arrMyRequest.add(myRequest_model("GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2"))
 //        arrMyRequest.add(myRequest_model("GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2"))
-//        arrMyRequest.add(myRequest_model("GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2"))
-//        arrMyRequest.add(myRequest_model("GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2"))
-//        arrMyRequest.add(myRequest_model("GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2"))
-//
+
     }
 
     private fun fetchMyRequests() {
@@ -101,7 +98,7 @@ class Profile_Fragment : Fragment() {
                         val type = orderObject.getString("type")
                         var store = orderObject.getString("storeName")
                         val orderTime = orderObject.getString("orderTime")
-                        val orderstatus = "Status: "+orderObject.getString("orderStatus")
+                        val orderstatus = orderObject.getString("orderStatus")
                         val orderDetails = orderObject.getString("orderDetails")
                         val orderPoint = orderObject.getString("orderPoint")
 

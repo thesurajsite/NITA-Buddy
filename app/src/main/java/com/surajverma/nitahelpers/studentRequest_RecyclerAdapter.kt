@@ -33,7 +33,6 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
 
 
         val recyclerLayout=itemView.findViewById<LinearLayout>(R.id.myRequestLayout)
-        //VIBRATOR VIBRATOR VIBRATOR
         val vibrator = itemView.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
 
@@ -62,7 +61,7 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
         holder.phoneNo.text=arrStudentRequest[position].phoneNo
         holder.storeImage.setImageResource(arrStudentRequest[position].image)
 
-        // VISIBILITY CONTROLS FOR PHONE
+        // VISIBILITY CONTROLS FOR PHONE NUMBER
         var flag=0
         holder.studentRequestLayout.setOnClickListener {
             if(flag==0){
@@ -84,6 +83,9 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
             callintent.setData(Uri.parse("tel:" + arrStudentRequest[position].phoneNo))
             context.startActivity(callintent)
         }
+
+
+
 
     }
 
