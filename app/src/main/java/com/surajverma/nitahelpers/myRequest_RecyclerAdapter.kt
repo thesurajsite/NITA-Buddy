@@ -135,7 +135,7 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
                     if(action){
                         val response = jsonData.getString("response") // Contains text "Your OTP is: "
                         val otp=jsonData.getLong("otp")
-                        holder.generateOtp.setText("\"$otp\"")
+                        holder.generateOtp.setText("\" $otp \"")
                     }
                 },
                 {
