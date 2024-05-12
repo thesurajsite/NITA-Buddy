@@ -17,9 +17,8 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONException
+import kotlinx.coroutines.awaitCancellation
 import org.json.JSONObject
-import java.util.Objects
 
 class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList<myRequest_model>) : RecyclerView.Adapter<myRequest_RecyclerAdapter.ViewHolder>() {
 
@@ -53,6 +52,7 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
         val myRequestLayout=itemView.findViewById<LinearLayout>(R.id.myRequestLayout)
         val tapLayout=itemView.findViewById<LinearLayout>(R.id.tapLayout)
         val generateOtp=itemView.findViewById<TextView>(R.id.generateOtp)
+        val cancelOrder=itemView.findViewById<TextView>(R.id.cancelOrder)
         val recyclerLayout=itemView.findViewById<LinearLayout>(R.id.myRequestLayout)
         //VIBRATOR VIBRATOR VIBRATOR
         val vibrator = itemView.context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
@@ -81,7 +81,8 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
         holder.storeImage.setImageResource(arrMyRequest[position].image)
 
 
-        // VISIBILITY CONTROLS FOR PHONE
+
+        //TAPLAYOUT (OTP & CANCEL BUTTON) VISIBILITY CONTROLS
         var flag=0
         holder.myRequestLayout.setOnClickListener {
             if(flag==0){
@@ -97,14 +98,29 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
             }
         }
 
+        // VISIBILITY CONTROLS FOR OTP & CANCEL BUTTONS (INDIVIDUALLY)
+
         if (arrMyRequest[position].orderstatus=="ACCEPTED"){
             holder.generateOtp.visibility=View.VISIBLE
+            holder.cancelOrder.visibility=View.GONE
+        }
+        else if(arrMyRequest[position].orderstatus=="NOT_ACCEPTED"){
+            holder.cancelOrder.visibility=View.VISIBLE
+            holder.generateOtp.visibility=View.GONE
         }
         else{
             holder.generateOtp.visibility=View.GONE
+            holder.cancelOrder.visibility=View.GONE
+        }
+
+        // GREEN BACKGROUND TO ACCEPTED AND COMPLETED ORDERS
+        if(arrMyRequest[position].orderstatus=="ACCEPTED" || arrMyRequest[position].orderstatus=="COMPLETED" || arrMyRequest[position].orderstatus=="IN_PROGRESS")
+        {
+            holder.orderStatus.setBackgroundResource(R.drawable.button_shape_green)
         }
 
         holder.generateOtp.setOnClickListener {
+            holder.vibrator.vibrate(50)
             holder.generateOtp.setText("Generating OTP...")
 
             val orderId=arrMyRequest[position].orderId
@@ -137,6 +153,42 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
             }
 
             addtoRequestQueue(request)
+        }
+
+        holder.cancelOrder.setOnClickListener {
+            holder.vibrator.vibrate(50)
+            holder.cancelOrder.setText("Cancelling...")
+            val orderId=arrMyRequest[position].orderId
+
+            jsonObject= JSONObject()
+            jsonObject.put("orderId", orderId)
+            val url = "https://gharaanah.onrender.com/engineering/cancel"
+            val request = object : JsonObjectRequest(
+                Method.POST, url, jsonObject,
+                { jsonData ->
+                    val action = jsonData.getBoolean("action")
+//                    val response=jsonData.getString("response")
+                    if(action){
+                        holder.cancelOrder.setText("Order Cancelled")
+                        Toast.makeText(context, "Order Cancelled, Please Refresh", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                {
+                    Toast.makeText(context, "Some Error Occured", Toast.LENGTH_SHORT).show()
+                    Log.w("otp-request", "${it.message}")
+                }
+            ){
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    val token=SharedPreferencesManager.getUserToken()
+                    headers["Authorization"] = "Bearer $token"
+                    return headers
+                }
+
+            }
+
+            addtoRequestQueue(request)
+
         }
     }
 }

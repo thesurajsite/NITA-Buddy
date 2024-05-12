@@ -137,14 +137,43 @@
 
                 <TextView
                     android:id="@+id/generateOtp"
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Generate OTP"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:textSize="@dimen/_13sdp"
                     android:gravity="center_vertical"
                     android:drawableTint="@color/white"
                     android:drawableStart="@drawable/accept_request"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/cancelOrder"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/cancel"
+                    android:drawableTint="@color/white"
                     android:drawablePadding="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_15sdp"
                     android:layout_marginRight="@dimen/_15sdp"
