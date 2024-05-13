@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Create_Request_Fragment"
+    tools:context="Fragments.Create_Request_Fragment"
     android:background="@color/blue">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,31 +12,24 @@
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/_30sdp">
 
-        <androidx.cardview.widget.CardView
+        <TextView
             android:id="@+id/createRequestTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Create Request"
+            android:textSize="@dimen/_25sdp"
+            android:textColor="@color/white"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:background="@drawable/button_shape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_10sdp"
             android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create Request"
-                android:textSize="@dimen/_25sdp"
-                android:textColor="@color/black"
-                android:paddingLeft="@dimen/_10sdp"
-                android:paddingRight="@dimen/_10sdp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:fontFamily="@font/allerta_stencil"/>
-
-        </androidx.cardview.widget.CardView>
+            android:layout_marginRight="@dimen/_20sdp"/>
 
         <LinearLayout
             android:id="@+id/LL1"

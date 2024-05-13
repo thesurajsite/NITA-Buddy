@@ -1,7 +1,6 @@
-package com.surajverma.nitahelpers
+package Fragments
 
 import SharedPreferences.SharedPreferencesManager
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,8 +18,11 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.databinding.FragmentHomeBinding
+import com.surajverma.nitahelpers.R
+import com.surajverma.nitahelpers.User_Login_Activity
 import com.surajverma.nitahelpers.databinding.FragmentProfileBinding
+import com.surajverma.nitahelpers.myRequest_RecyclerAdapter
+import com.surajverma.nitahelpers.myRequest_model
 import org.json.JSONObject
 
 class Profile_Fragment : Fragment() {
@@ -30,7 +32,7 @@ class Profile_Fragment : Fragment() {
     private lateinit var vibrator: Vibrator
     private lateinit var arrMyRequest:ArrayList<myRequest_model>
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter:myRequest_RecyclerAdapter
+    private lateinit var adapter: myRequest_RecyclerAdapter
     fun <T> addtoRequestQueue(request: Request<T>){
         requestQueue.add(request)
     }
@@ -103,21 +105,21 @@ class Profile_Fragment : Fragment() {
                         val orderPoint = orderObject.getString("orderPoint")
 
                         // Image Allocation
-                        var image=R.drawable.amazon
+                        var image= R.drawable.amazon
                         if(store=="amazon"){
-                            image=R.drawable.amazon
+                            image= R.drawable.amazon
                         }
                         else if(store=="flipkart"){
-                            image=R.drawable.flipkart
+                            image= R.drawable.flipkart
                         }
                         else if(store=="Samrat"){
-                            image=R.drawable.flipkart
+                            image= R.drawable.flipkart
                         }
                         else if(store=="John"){
-                            image=R.drawable.john
+                            image= R.drawable.john
                         }
                         else if(store=="Joydip"){
-                            image=R.drawable.wow
+                            image= R.drawable.wow
                         }
 
                         store = store.substring(0,1).toUpperCase()+store.substring(1)

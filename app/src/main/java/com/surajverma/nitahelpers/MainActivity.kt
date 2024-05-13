@@ -1,23 +1,22 @@
 package com.surajverma.nitahelpers
 
+import Fragments.Accepted_Requests_Fragment
+import Fragments.Create_Request_Fragment
+import Fragments.Home_fragment
+import Fragments.Profile_Fragment
 import SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
-import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.surajverma.nitahelpers.databinding.ActivityMainBinding
-import com.surajverma.nitahelpers.databinding.ActivityUserLoginBinding
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -58,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
             when(it.itemId){
                 R.id.home -> replaceFragment(Home_fragment())
+                R.id.accepted-> replaceFragment(Accepted_Requests_Fragment())
                 R.id.createRequest -> replaceFragment(Create_Request_Fragment())
                 R.id.profile -> replaceFragment(Profile_Fragment())
 

@@ -154,15 +154,15 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/red"
+                android:backgroundTint="@color/blue"
                 app:cardCornerRadius="@dimen/_5sdp"
                 android:layout_marginLeft="@dimen/_10sdp">
 
                 <TextView
-                    android:id="@+id/acceptRequest"
+                    android:id="@+id/completeRequest"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Accept Request"
+                    android:text="Complete Request"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:gravity="center_vertical"

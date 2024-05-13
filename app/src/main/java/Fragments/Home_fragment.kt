@@ -1,9 +1,7 @@
-package com.surajverma.nitahelpers
+package Fragments
 
 import SharedPreferences.SharedPreferencesManager
-import android.content.Context
 import android.content.Context.VIBRATOR_SERVICE
-import android.content.Intent
 import android.os.Bundle
 import android.os.Vibrator
 import android.util.Log
@@ -12,15 +10,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.databinding.ActivityMainBinding
+import com.surajverma.nitahelpers.R
 import com.surajverma.nitahelpers.databinding.FragmentHomeBinding
+import com.surajverma.nitahelpers.studentRequest_RecyclerAdapter
+import com.surajverma.nitahelpers.studentRequest_model
 import org.json.JSONObject
 
 
@@ -95,21 +93,21 @@ class Home_fragment : Fragment() {
                         val phoneNo= studentDetails.getString("phoneNo")
 
                         // Image Allocation
-                        var image=R.drawable.amazon
+                        var image= R.drawable.amazon
                         if(storeName=="amazon"){
-                            image=R.drawable.amazon
+                            image= R.drawable.amazon
                         }
                         else if(storeName=="flipkart"){
-                            image=R.drawable.flipkart
+                            image= R.drawable.flipkart
                         }
                         else if(storeName=="Samrat"){
-                            image=R.drawable.flipkart
+                            image= R.drawable.flipkart
                         }
                         else if(storeName=="John"){
-                            image=R.drawable.john
+                            image= R.drawable.john
                         }
                         else if(storeName=="Joydip"){
-                            image=R.drawable.wow
+                            image= R.drawable.wow
                         }
 
                         arrStudentRequest.add(studentRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo))
