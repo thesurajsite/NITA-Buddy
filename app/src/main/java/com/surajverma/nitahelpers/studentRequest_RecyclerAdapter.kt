@@ -157,10 +157,6 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
 
                         addtoRequestQueue(request)
 
-
-
-
-
                     } catch (e: Exception) {
                         Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show()
                         Log.w("accept-request", e)

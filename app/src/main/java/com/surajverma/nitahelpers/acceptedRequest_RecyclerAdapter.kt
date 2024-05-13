@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -27,6 +28,18 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
 
     private lateinit var jsonObject: JSONObject
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
+
+    fun <T> addtoRequestQueue(request: Request<T>){
+        requestQueue.add(request)
+    }
+
+    private val requestQueue: RequestQueue by lazy {
+        Volley.newRequestQueue(context)
+    }
+
+    init {
+        SharedPreferencesManager= SharedPreferencesManager(context)
+    }
 
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -46,6 +59,7 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
         val studentRequestLayout=itemView.findViewById<LinearLayout>(R.id.studentRequestLayout)
         val tapLayout=itemView.findViewById<LinearLayout>(R.id.tapLayout)
         val verifyOtpLayout=itemView.findViewById<LinearLayout>(R.id.verifyOtpLayout)
+        val otpEditText=itemView.findViewById<EditText>(R.id.otpEditText)
         val verifyOtp=itemView.findViewById<Button>(R.id.verifyOTP)
         
         
@@ -88,6 +102,7 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
                 flag=0
                 holder.vibrator.vibrate(50)
                 holder.tapLayout.visibility=View.GONE
+                holder.verifyOtpLayout.visibility=View.GONE
             }
         }
 
@@ -108,7 +123,50 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
         }
         
         holder.verifyOtp.setOnClickListener {
-            Toast.makeText(context, "verifying", Toast.LENGTH_SHORT).show()
+
+            holder.vibrator.vibrate(50)
+            holder.verifyOtp.setText("Verifying OTP...")
+
+            val otp=holder.otpEditText.text
+            val orderId=arrAcceptedRequest[position].orderId
+
+            jsonObject= JSONObject()
+            jsonObject.put("orderId", orderId)
+            jsonObject.put("otp", otp)
+            val url = "https://gharaanah.onrender.com/engineering/completerequest"
+            val request = object : JsonObjectRequest(
+                Method.POST, url, jsonObject,
+                { jsonData ->
+                    val action = jsonData.getBoolean("action")
+                    if(action){
+                        val response = jsonData.getString("response")
+                        holder.verifyOtp.visibility=View.GONE
+                        holder.otpEditText.visibility=View.GONE
+                        holder.completeRequests.setText("Completed")
+                        Toast.makeText(context, "Order Completed, Please Refresh...", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Toast.makeText(context, "Incorrect OTP", Toast.LENGTH_SHORT).show()
+                        holder.verifyOtp.setText("Verify Again")
+                    }
+
+                },
+                {
+                    Toast.makeText(context, "Some Error Occured", Toast.LENGTH_SHORT).show()
+                    Log.w("complete-request", "${it.message}")
+                }
+            ){
+                override fun getHeaders(): MutableMap<String, String> {
+                    val headers = HashMap<String, String>()
+                    val token=SharedPreferencesManager.getUserToken()
+                    headers["Authorization"] = "Bearer $token"
+                    return headers
+                }
+
+            }
+
+            addtoRequestQueue(request)
+
         }
         
         
