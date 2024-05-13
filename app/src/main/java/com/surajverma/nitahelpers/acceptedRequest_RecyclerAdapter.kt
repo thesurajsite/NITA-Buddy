@@ -114,8 +114,6 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             context.startActivity(callintent)
         }
 
-        val dialog= Dialog(context)
-        dialog.setContentView(R.layout.complete_request_dialog)
 
         holder.completeRequests.setOnClickListener {
             holder.vibrator.vibrate(50)
