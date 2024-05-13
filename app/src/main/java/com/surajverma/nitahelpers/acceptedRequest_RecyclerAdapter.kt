@@ -2,6 +2,7 @@ package com.surajverma.nitahelpers
 
 
 import SharedPreferences.SharedPreferencesManager
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -43,6 +45,10 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
 
         val studentRequestLayout=itemView.findViewById<LinearLayout>(R.id.studentRequestLayout)
         val tapLayout=itemView.findViewById<LinearLayout>(R.id.tapLayout)
+        val verifyOtpLayout=itemView.findViewById<LinearLayout>(R.id.verifyOtpLayout)
+        val verifyOtp=itemView.findViewById<Button>(R.id.verifyOTP)
+        
+        
 //        val acceptRequest=itemView.findViewById<TextView>(R.id.acceptRequest)
 
 
@@ -93,9 +99,19 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             context.startActivity(callintent)
         }
 
-        holder.completeRequests.setOnClickListener {
+        val dialog= Dialog(context)
+        dialog.setContentView(R.layout.complete_request_dialog)
 
+        holder.completeRequests.setOnClickListener {
+            holder.vibrator.vibrate(50)
+            holder.verifyOtpLayout.visibility=View.VISIBLE
         }
+        
+        holder.verifyOtp.setOnClickListener {
+            Toast.makeText(context, "verifying", Toast.LENGTH_SHORT).show()
+        }
+        
+        
 
 
 

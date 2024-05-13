@@ -177,6 +177,47 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/verifyOtpLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tapLayout"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/dialogEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:background="@drawable/custom_input_2"
+                android:inputType="number"
+                android:textSize="@dimen/_10sdp"
+                android:hint="Enter OTP"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:padding="@dimen/_10sdp"/>
+
+            <Button
+                android:id="@+id/verifyOTP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Verify OTP"
+                android:background="@color/blue"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginRight="@dimen/_30sdp"/>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
