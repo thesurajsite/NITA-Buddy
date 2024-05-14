@@ -82,7 +82,7 @@ class Profile_Fragment : Fragment() {
 
     private fun fetchMyRequests() {
 
-        Toast.makeText(requireContext(), "Fetching Details...", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Fetching Details...", Toast.LENGTH_SHORT).show()
         //API Call
         jsonObject= JSONObject()
         val url = "https://gharaanah.onrender.com/engineering/studentrequest"

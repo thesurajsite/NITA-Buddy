@@ -107,6 +107,12 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             }
         }
 
+        // GREEN BACKGROUND TO COMPLETED ORDERS
+        if(arrAcceptedRequest[position].orderstatus=="COMPLETED")
+        {
+            holder.orderStatus.setBackgroundResource(R.drawable.button_shape_green)
+        }
+
         holder.phoneNo.setOnClickListener {
             holder.vibrator.vibrate(50)
             Toast.makeText(context, "Calling " + arrAcceptedRequest[position].phoneNo, Toast.LENGTH_SHORT).show()

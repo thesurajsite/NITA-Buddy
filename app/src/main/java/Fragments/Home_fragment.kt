@@ -53,6 +53,13 @@ class Home_fragment : Fragment() {
         studentRequestRecyclerView()
         fetchStudentsRequest()
 
+        if(arrStudentRequest.isEmpty()){
+            binding.nothingToShowImage.visibility=View.VISIBLE
+        }
+        else{
+            binding.nothingToShowImage.visibility=View.GONE
+        }
+
 
 
         return binding.root
@@ -61,7 +68,7 @@ class Home_fragment : Fragment() {
     private fun fetchStudentsRequest() {
 
         binding.ProgressBar.visibility=View.VISIBLE
-        Toast.makeText(requireContext(), "Fetching Requests for you...", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(requireContext(), "Fetching Requests for you...", Toast.LENGTH_SHORT).show()
 
         //API Call
         jsonObject= JSONObject()
@@ -116,6 +123,13 @@ class Home_fragment : Fragment() {
                     adapter.notifyDataSetChanged()
 //                    Log.d("nitcheckorder", "$nitOrderArray")
 //                    Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
+
+                    if(arrStudentRequest.isEmpty()){
+                        binding.nothingToShowImage.visibility=View.VISIBLE
+                    }
+                    else{
+                        binding.nothingToShowImage.visibility=View.GONE
+                    }
 
                 }
 

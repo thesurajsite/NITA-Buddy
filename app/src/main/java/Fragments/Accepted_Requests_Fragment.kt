@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.surajverma.nitahelpers.R
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -43,13 +44,18 @@ class Accepted_Requests_Fragment : Fragment() {
         return binding.root
     }
 
-    fun <T> addtoRequestQueue(request: Request<T>){
+    fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
+
 
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(requireContext())
     }
+
 
     private fun acceptedRequestRecyclerView() {
         arrAcceptedRequest= ArrayList()
@@ -129,7 +135,6 @@ class Accepted_Requests_Fragment : Fragment() {
                 Log.e("accepted-requests", "Error: ${it.message}")
                 Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
                 binding.ProgressBar.visibility=View.INVISIBLE
-
             }
         ){
             // Override getHeaders to add the Authorization header
@@ -141,7 +146,7 @@ class Accepted_Requests_Fragment : Fragment() {
             }
 
         }
-        addtoRequestQueue(request)
+        addtoRequestQueue(request, 20000)
 
     }
 
