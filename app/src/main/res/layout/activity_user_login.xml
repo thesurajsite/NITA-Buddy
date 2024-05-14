@@ -9,16 +9,38 @@
     android:gravity="center"
     tools:context=".User_Login_Activity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="A Gharaana Product"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/allerta_stencil"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:text="NITA BUDDY"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Gharaana Login"
+        android:textSize="40dp" />
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Log into Existing Account"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="35dp" />
+        android:textSize="23dp"
+        android:layout_marginTop="@dimen/_30sdp"/>
 
 
 

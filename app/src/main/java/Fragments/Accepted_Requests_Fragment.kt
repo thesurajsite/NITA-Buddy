@@ -126,8 +126,8 @@ class Accepted_Requests_Fragment : Fragment() {
 
             },{
                 binding.ProgressBar.visibility=View.GONE
-                Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
                 Log.e("accepted-requests", "Error: ${it.message}")
+                Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
                 binding.ProgressBar.visibility=View.INVISIBLE
 
             }

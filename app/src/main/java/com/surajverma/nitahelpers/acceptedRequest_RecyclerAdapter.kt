@@ -55,6 +55,7 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
         val storeImage=itemView.findViewById<ImageView>(R.id.storeImage)
         val phoneNo=itemView.findViewById<TextView>(R.id.phoneNo)
         val completeRequests=itemView.findViewById<TextView>(R.id.completeRequest)
+        val completedButton=itemView.findViewById<TextView>(R.id.completedButton)
 
         val studentRequestLayout=itemView.findViewById<LinearLayout>(R.id.studentRequestLayout)
         val tapLayout=itemView.findViewById<LinearLayout>(R.id.tapLayout)
@@ -119,6 +120,12 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             holder.vibrator.vibrate(50)
             holder.verifyOtpLayout.visibility=View.VISIBLE
         }
+
+        if(arrAcceptedRequest[position].orderstatus=="COMPLETED")
+        {
+            holder.completeRequests.visibility=View.GONE        //enables otp editText
+            holder.completedButton.visibility=View.VISIBLE      // Just a text showing "Completed" (Non-functional Button)
+        }
         
         holder.verifyOtp.setOnClickListener {
 
@@ -140,7 +147,8 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
                         val response = jsonData.getString("response")
                         holder.verifyOtp.visibility=View.GONE
                         holder.otpEditText.visibility=View.GONE
-                        holder.completeRequests.setText("Completed")
+                        holder.completeRequests.visibility=View.GONE        //enables otp editText
+                        holder.completedButton.visibility=View.VISIBLE      // Just a text showing "Completed" (Non-functional Button)
                         Toast.makeText(context, "Order Completed, Please Refresh...", Toast.LENGTH_SHORT).show()
                     }
                     else{

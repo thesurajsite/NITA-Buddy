@@ -9,23 +9,42 @@
     android:gravity="center"
     tools:context=".User_SignUp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="A Gharaana Product"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/allerta_stencil"
+        android:textSize="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:text="NITA BUDDY"
+        android:textAlignment="center"
+        android:textColor="@color/dark_blue"
         android:fontFamily="@font/allerta_stencil"
-        android:text="Gharaana Signup"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Create a New Account"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="35dp" />
+        android:textSize="23dp"
+        android:layout_marginTop="@dimen/_30sdp"/>
 
     <EditText
         android:id="@+id/name_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/custom_input"
         android:drawablePadding="10dp"

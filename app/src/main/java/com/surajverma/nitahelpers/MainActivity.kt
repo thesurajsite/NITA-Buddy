@@ -4,6 +4,7 @@ import Fragments.Accepted_Requests_Fragment
 import Fragments.Create_Request_Fragment
 import Fragments.Home_fragment
 import Fragments.Profile_Fragment
+import Fragments.Rewards_Fragment
 import SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.home -> replaceFragment(Home_fragment())
                 R.id.accepted-> replaceFragment(Accepted_Requests_Fragment())
                 R.id.createRequest -> replaceFragment(Create_Request_Fragment())
+                R.id.rewards -> replaceFragment(Rewards_Fragment())
                 R.id.profile -> replaceFragment(Profile_Fragment())
 
             }
