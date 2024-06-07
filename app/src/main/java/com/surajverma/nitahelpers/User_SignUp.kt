@@ -72,7 +72,16 @@ class User_SignUp : AppCompatActivity() {
                 enrollmentNo = enrollmentNo
             )
 
-            signUpUsingVolley(signUpData)
+
+
+            if(name!="" && year!="Select Year" && phoneNo!="" && password!="" && branch!="Select Branch" && hostel!="Select Hostel" && enrollmentNo!="")
+            {
+                signUpUsingVolley(signUpData)
+            }
+            else{
+                Toast.makeText(this, "Please Fill All Fields", Toast.LENGTH_SHORT).show()
+            }
+
         }
 
         binding.signupToLoginTv.setOnClickListener {
@@ -174,13 +183,13 @@ class User_SignUp : AppCompatActivity() {
     private fun spinner() {
 
         // Hostel Spinner
-        val list_of_hostels= arrayListOf<String>("Select Hostel","Aryabhatta", "RNT")
+        val list_of_hostels= arrayListOf<String>("Select Hostel","Aryabhatta", "RNT", "Gargi")
         val hostelSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_hostels)
         hostelSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.hostelSpinner.adapter=hostelSpinnerAdapter
 
         //Branch Spinner
-        val list_of_branch= arrayListOf<String>("Select Branch", "Computer Science", "Electronucs", "Mechanical", "Civil", "Electrical", "Chemical", "Production", "Instrumentation", "BioTech", "IIIT")
+        val list_of_branch= arrayListOf<String>("Select Branch", "Computer Science", "Electronics", "Mechanical", "Civil", "Electrical", "Chemical", "Production", "Instrumentation", "BioTech", "IIIT")
         val branchSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_branch)
         branchSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.branchSpinner.adapter=branchSpinnerAdapter
