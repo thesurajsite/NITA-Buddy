@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -22,7 +23,11 @@ class User_Login_Activity : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private lateinit var jsonObject: JSONObject
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
-    fun <T> addtoRequestQueue(request: Request<T>){
+
+    fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
 
@@ -74,12 +79,14 @@ class User_Login_Activity : AppCompatActivity() {
 
                     },{
                         binding.Progressbar.visibility= View.INVISIBLE
-                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                        Log.w("login-response", "${it.message}")
+                        if(it.message != null){
+                            Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()  //line 77
+                            Log.w("login-response", "${it.message}")
+                        }
                     }
                 )
 
-                addtoRequestQueue(request)
+                addtoRequestQueue(request, 20000)
 
             }
             else{

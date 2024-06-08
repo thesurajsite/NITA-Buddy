@@ -20,8 +20,6 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest: ArrayList<studentRequest_model>) : RecyclerView.Adapter<studentRequest_RecyclerAdapter.ViewHolder>() {
@@ -110,6 +108,18 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
             context.startActivity(callintent)
         }
 
+        holder.studentName.setOnClickListener {
+            holder.vibrator.vibrate(50)
+            val intent=Intent(context, student_details::class.java)
+            intent.putExtra("name", arrStudentRequest[position].studentName)
+            intent.putExtra("branch", arrStudentRequest[position].branch)
+            intent.putExtra("enrollmentNo", arrStudentRequest[position].enrollmentNo)
+            intent.putExtra("year", arrStudentRequest[position].year)
+            intent.putExtra("hostel", arrStudentRequest[position].hostel)
+            intent.putExtra("phoneNo", arrStudentRequest[position].phoneNo)
+            context.startActivity(intent)
+
+        }
 
 
         holder.acceptRequest.setOnClickListener {

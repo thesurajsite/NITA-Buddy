@@ -46,7 +46,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_160sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                android:background="@color/white">
+                android:backgroundTint="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_160sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                android:background="@color/white"
+                android:backgroundTint="@color/white"
                 android:layout_marginLeft="@dimen/_20sdp">
 
                 <LinearLayout
@@ -144,7 +144,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_160sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                android:background="@color/white">
+                android:backgroundTint="@color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -185,7 +185,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_160sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                android:background="@color/white"
+                android:backgroundTint="@color/white"
                 android:layout_marginLeft="@dimen/_20sdp">
 
                 <LinearLayout
@@ -243,7 +243,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_160sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                android:background="@color/white"
+                android:backgroundTint="@color/white"
                 android:layout_marginLeft="@dimen/_20sdp">
 
                 <LinearLayout

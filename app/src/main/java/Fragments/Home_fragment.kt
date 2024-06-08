@@ -98,6 +98,10 @@ class Home_fragment : Fragment() {
                         //studentDetails
                         val studentName=studentDetails.getString("name")
                         val phoneNo= studentDetails.getString("phoneNo")
+                        val year= studentDetails.getString("year")
+                        val hostel= studentDetails.getString("hostel")
+                        val enrollmentNo= studentDetails.getString("enrollmentNo")
+                        val branch= studentDetails.getString("branch")
 
                         // Image Allocation
                         var image= R.drawable.amazon
@@ -117,7 +121,7 @@ class Home_fragment : Fragment() {
                             image= R.drawable.wow
                         }
 
-                        arrStudentRequest.add(studentRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo))
+                        arrStudentRequest.add(studentRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo, year, hostel, enrollmentNo, branch))
 
                     }
                     adapter.notifyDataSetChanged()

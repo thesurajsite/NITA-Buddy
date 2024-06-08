@@ -3,11 +3,13 @@ package com.surajverma.nitahelpers
 
 import SharedPreferences.SharedPreferencesManager
 import android.content.Context
+import android.content.Intent
 import android.os.Vibrator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -52,6 +54,7 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
         val myRequestLayout=itemView.findViewById<LinearLayout>(R.id.myRequestLayout)
         val tapLayout=itemView.findViewById<LinearLayout>(R.id.tapLayout)
         val generateOtp=itemView.findViewById<TextView>(R.id.generateOtp)
+        val whoAccepted=itemView.findViewById<TextView>(R.id.whoAccepted)
         val cancelOrder=itemView.findViewById<TextView>(R.id.cancelOrder)
         val recyclerLayout=itemView.findViewById<LinearLayout>(R.id.myRequestLayout)
         //VIBRATOR VIBRATOR VIBRATOR
@@ -102,14 +105,17 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
 
         if (arrMyRequest[position].orderstatus=="ACCEPTED"){
             holder.generateOtp.visibility=View.VISIBLE
+            holder.whoAccepted.visibility=View.VISIBLE
             holder.cancelOrder.visibility=View.GONE
         }
         else if(arrMyRequest[position].orderstatus=="NOT_ACCEPTED"){
             holder.cancelOrder.visibility=View.VISIBLE
             holder.generateOtp.visibility=View.GONE
+            holder.whoAccepted.visibility=View.GONE
         }
         else{
             holder.generateOtp.visibility=View.GONE
+            holder.whoAccepted.visibility=View.GONE
             holder.cancelOrder.visibility=View.GONE
         }
 
@@ -153,6 +159,21 @@ class myRequest_RecyclerAdapter(val context: Context,val arrMyRequest: ArrayList
             }
 
             addtoRequestQueue(request)
+        }
+
+        // WHO ACCEPTED BUTTON
+        holder.whoAccepted.setOnClickListener {
+            holder.vibrator.vibrate(50)
+
+            val intent= Intent(context, student_details::class.java)
+            intent.putExtra("name", arrMyRequest[position].studentName)
+            intent.putExtra("branch", arrMyRequest[position].branch)
+            intent.putExtra("enrollmentNo", arrMyRequest[position].enrollmentNo)
+            intent.putExtra("year", arrMyRequest[position].year)
+            intent.putExtra("hostel", arrMyRequest[position].hostel)
+            intent.putExtra("phoneNo", arrMyRequest[position].phoneNo)
+            context.startActivity(intent)
+
         }
 
         holder.cancelOrder.setOnClickListener {

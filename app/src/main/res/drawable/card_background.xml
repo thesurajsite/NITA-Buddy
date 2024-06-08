@@ -3,8 +3,8 @@
     <corners
         android:topLeftRadius="@dimen/_35sdp"
         android:topRightRadius="@dimen/_35sdp"
-        android:bottomLeftRadius="0dp"
-        android:bottomRightRadius="0dp"/>
+        android:bottomLeftRadius="@dimen/_35sdp"
+        android:bottomRightRadius="@dimen/_35sdp"/>
     <solid android:color="@android:color/white"/> <!-- Change the color as needed -->
     <padding android:left="0dp"
         android:top="0dp"

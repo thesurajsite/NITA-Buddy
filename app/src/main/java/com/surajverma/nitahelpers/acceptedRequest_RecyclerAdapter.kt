@@ -132,6 +132,18 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             holder.completeRequests.visibility=View.GONE        //enables otp editText
             holder.completedButton.visibility=View.VISIBLE      // Just a text showing "Completed" (Non-functional Button)
         }
+
+        holder.studentName.setOnClickListener {
+            holder.vibrator.vibrate(50)
+            val intent=Intent(context, student_details::class.java)
+            intent.putExtra("name", arrAcceptedRequest[position].studentName)
+            intent.putExtra("branch", arrAcceptedRequest[position].branch)
+            intent.putExtra("enrollmentNo", arrAcceptedRequest[position].enrollmentNo)
+            intent.putExtra("year", arrAcceptedRequest[position].year)
+            intent.putExtra("hostel", arrAcceptedRequest[position].hostel)
+            intent.putExtra("phoneNo", arrAcceptedRequest[position].phoneNo)
+            context.startActivity(intent)
+        }
         
         holder.verifyOtp.setOnClickListener {
 

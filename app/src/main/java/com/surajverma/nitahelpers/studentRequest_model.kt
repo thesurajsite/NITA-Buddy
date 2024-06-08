@@ -10,5 +10,9 @@ class studentRequest_model (
     var orderDetails: String,
     var orderPoint: String,
     var studentName: String,
-    var phoneNo: String
+    var phoneNo: String,
+    var year: String,
+    var hostel: String,
+    var enrollmentNo: String,
+    var branch: String
 )

@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="100dp"
                 android:layout_margin="5dp"
-                android:background="@color/white"
+                android:backgroundTint="@color/white"
                 android:padding="@dimen/_2sdp">
 
                 <ImageView
@@ -133,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/blue"
                 app:cardCornerRadius="@dimen/_5sdp"
-                android:layout_marginLeft="@dimen/_10sdp">
+                android:layout_marginLeft="@dimen/_5sdp">
 
                 <TextView
                     android:id="@+id/generateOtp"
@@ -148,8 +148,35 @@
                     android:drawableTint="@color/white"
                     android:drawableStart="@drawable/accept_request"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:layout_marginLeft="@dimen/_15sdp"
-                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/whoAccepted"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Accepted By"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_13sdp"
+                    android:gravity="center_vertical"
+                    android:drawableTint="@color/white"
+                    android:drawableStart="@drawable/baseline_person_24"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:layout_marginBottom="@dimen/_6sdp"/>
 
