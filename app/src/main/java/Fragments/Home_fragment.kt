@@ -17,12 +17,13 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.surajverma.nitahelpers.R
 import com.surajverma.nitahelpers.databinding.FragmentHomeBinding
+import com.surajverma.nitahelpers.myInterface
 import com.surajverma.nitahelpers.studentRequest_RecyclerAdapter
 import com.surajverma.nitahelpers.studentRequest_model
 import org.json.JSONObject
 
 
-class Home_fragment : Fragment() {
+class Home_fragment : Fragment(), myInterface {
 
     lateinit var binding: FragmentHomeBinding
     private lateinit var jsonObject: JSONObject
@@ -53,6 +54,16 @@ class Home_fragment : Fragment() {
         studentRequestRecyclerView()
         fetchStudentsRequest()
 
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+
+            studentRequestRecyclerView()
+            fetchStudentsRequest()
+            binding.swipeRefreshLayout.isRefreshing=false
+
+
+        }
+
         if(arrStudentRequest.isEmpty()){
             binding.nothingToShowImage.visibility=View.VISIBLE
         }
@@ -65,7 +76,7 @@ class Home_fragment : Fragment() {
         return binding.root
     }
 
-    private fun fetchStudentsRequest() {
+    override fun fetchStudentsRequest() {
 
         binding.ProgressBar.visibility=View.VISIBLE
 //        Toast.makeText(requireContext(), "Fetching Requests for you...", Toast.LENGTH_SHORT).show()
@@ -112,7 +123,7 @@ class Home_fragment : Fragment() {
                             image= R.drawable.flipkart
                         }
                         else if(storeName=="Samrat"){
-                            image= R.drawable.flipkart
+                            image= R.drawable.samrat
                         }
                         else if(storeName=="John"){
                             image= R.drawable.john
@@ -157,9 +168,9 @@ class Home_fragment : Fragment() {
 
     }
 
-    private fun studentRequestRecyclerView() {
+    override fun studentRequestRecyclerView() {
         arrStudentRequest= ArrayList()
-        adapter= studentRequest_RecyclerAdapter(requireContext(), arrStudentRequest)
+        adapter= studentRequest_RecyclerAdapter(requireContext(), arrStudentRequest, this )
         binding.studentRequestRecyclerView.adapter=adapter
         binding.studentRequestRecyclerView.layoutManager=LinearLayoutManager(requireContext())
 

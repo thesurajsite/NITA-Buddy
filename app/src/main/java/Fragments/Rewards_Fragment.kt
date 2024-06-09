@@ -31,9 +31,14 @@ class Rewards_Fragment : Fragment() {
         binding = FragmentRewardsBinding.inflate(inflater, container, false)
         SharedPreferencesManager= SharedPreferencesManager(requireContext())
 //        binding.ProgressBar.visibility=View.VISIBLE
-        binding.coins.setText("Fetching...")
+
 
         fetchRewards()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            fetchRewards()
+            binding.swipeRefreshLayout.isRefreshing=false
+        }
 
         return binding.root
     }
@@ -47,6 +52,7 @@ class Rewards_Fragment : Fragment() {
     }
 
     private fun fetchRewards() {
+        binding.coins.setText("Fetching...")
 
         //API Call
         jsonObject= JSONObject()

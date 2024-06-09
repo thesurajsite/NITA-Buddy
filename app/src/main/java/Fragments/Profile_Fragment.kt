@@ -57,6 +57,12 @@ class Profile_Fragment : Fragment() {
         myRequestRecyclerView()
 
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            fetchProfileData()
+            fetchMyRequests()
+            myRequestRecyclerView()
+            binding.swipeRefreshLayout.isRefreshing=false
+        }
 
 
         binding.logoutBtn.setOnClickListener{

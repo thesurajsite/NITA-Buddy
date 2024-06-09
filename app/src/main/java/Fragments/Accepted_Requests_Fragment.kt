@@ -41,6 +41,12 @@ class Accepted_Requests_Fragment : Fragment() {
         acceptedRequestRecyclerView()
         fetchAcceptedRequests()
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            acceptedRequestRecyclerView()
+            fetchAcceptedRequests()
+            binding.swipeRefreshLayout.isRefreshing=false
+        }
+
         return binding.root
     }
 

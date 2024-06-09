@@ -1,6 +1,7 @@
 package com.surajverma.nitahelpers
 
 
+import Fragments.Home_fragment
 import SharedPreferences.SharedPreferencesManager
 import android.app.AlertDialog
 import android.content.Context
@@ -15,7 +16,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -23,7 +23,10 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 
-class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest: ArrayList<studentRequest_model>) : RecyclerView.Adapter<studentRequest_RecyclerAdapter.ViewHolder>() {
+class studentRequest_RecyclerAdapter(
+    val context: Context,
+    val arrStudentRequest: ArrayList<studentRequest_model>, val myInterface: myInterface
+) : RecyclerView.Adapter<studentRequest_RecyclerAdapter.ViewHolder>() {
 
     private lateinit var jsonObject: JSONObject
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
@@ -149,7 +152,12 @@ class studentRequest_RecyclerAdapter(val context: Context,val arrStudentRequest:
                                 if(action){
                                     val response = jsonData.getString("response")
                                     holder.acceptRequest.setText("Order Accepted")
-                                    Toast.makeText(context, "Order Accepted, Please Refresh...", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(context, "Order Accepted", Toast.LENGTH_SHORT).show()
+
+                                    // REFRESH THE RECYCLER VIEW
+                                    myInterface.fetchStudentsRequest()
+                                    myInterface.studentRequestRecyclerView()
+
                                 }
                             },
                             {
