@@ -1,5 +1,6 @@
 package Fragments
 
+import Activities.User_Login_Activity
 import SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
@@ -18,11 +19,10 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.R
-import com.surajverma.nitahelpers.User_Login_Activity
-import com.surajverma.nitahelpers.databinding.FragmentProfileBinding
-import com.surajverma.nitahelpers.myRequest_RecyclerAdapter
-import com.surajverma.nitahelpers.myRequest_model
+import com.gharaana.nitabuddy.R
+import com.gharaana.nitabuddy.databinding.FragmentProfileBinding
+import Activities.myRequest_RecyclerAdapter
+import Activities.myRequest_model
 import org.json.JSONObject
 
 class Profile_Fragment : Fragment() {

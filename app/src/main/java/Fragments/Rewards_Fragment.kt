@@ -12,10 +12,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.R
-import com.surajverma.nitahelpers.databinding.FragmentHomeBinding
-import com.surajverma.nitahelpers.databinding.FragmentRewardsBinding
-import com.surajverma.nitahelpers.studentRequest_model
+import com.gharaana.nitabuddy.databinding.FragmentRewardsBinding
 import org.json.JSONObject
 
 class Rewards_Fragment : Fragment() {

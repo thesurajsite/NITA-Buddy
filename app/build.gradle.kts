@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.surajverma.nitahelpers"
+    namespace = "com.gharaana.nitabuddy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.surajverma.nitahelpers"
+        applicationId = "com.gharaana.nitabuddy"
         minSdk = 26
         targetSdk = 34
-        versionCode = 4
-        versionName = "4.0"
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

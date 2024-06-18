@@ -15,11 +15,11 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.R
-import com.surajverma.nitahelpers.databinding.FragmentHomeBinding
-import com.surajverma.nitahelpers.myInterface
-import com.surajverma.nitahelpers.studentRequest_RecyclerAdapter
-import com.surajverma.nitahelpers.studentRequest_model
+import com.gharaana.nitabuddy.R
+import com.gharaana.nitabuddy.databinding.FragmentHomeBinding
+import Activities.myInterface
+import Activities.studentRequest_RecyclerAdapter
+import Activities.studentRequest_model
 import org.json.JSONObject
 
 

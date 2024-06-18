@@ -8,17 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.surajverma.nitahelpers.R
+import com.gharaana.nitabuddy.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import com.surajverma.nitahelpers.acceptedRequest_RecyclerAdapter
-import com.surajverma.nitahelpers.acceptedRequest_model
-import com.surajverma.nitahelpers.databinding.FragmentAcceptedRequestsBinding
-import com.surajverma.nitahelpers.studentRequest_model
+import Activities.acceptedRequest_RecyclerAdapter
+import Activities.acceptedRequest_model
+import com.gharaana.nitabuddy.databinding.FragmentAcceptedRequestsBinding
 import org.json.JSONObject
 
 
