@@ -23,6 +23,7 @@ import com.gharaana.nitabuddy.R
 import com.gharaana.nitabuddy.databinding.FragmentProfileBinding
 import Activities.myRequest_RecyclerAdapter
 import Activities.myRequest_model
+import com.android.volley.DefaultRetryPolicy
 import org.json.JSONObject
 
 class Profile_Fragment : Fragment() {
@@ -33,9 +34,14 @@ class Profile_Fragment : Fragment() {
     private lateinit var arrMyRequest:ArrayList<myRequest_model>
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: myRequest_RecyclerAdapter
-    fun <T> addtoRequestQueue(request: Request<T>){
+
+    fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
+
 
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(requireContext())
@@ -182,7 +188,7 @@ class Profile_Fragment : Fragment() {
                 return headers
             }
         }
-        addtoRequestQueue(request)
+        addtoRequestQueue(request, 30000)
 
     }
 
@@ -234,7 +240,7 @@ class Profile_Fragment : Fragment() {
             }
         }
 
-        addtoRequestQueue(request)
+        addtoRequestQueue(request, 30000)
 
     }
 

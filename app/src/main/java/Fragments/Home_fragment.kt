@@ -20,6 +20,7 @@ import com.gharaana.nitabuddy.databinding.FragmentHomeBinding
 import Activities.myInterface
 import Activities.studentRequest_RecyclerAdapter
 import Activities.studentRequest_model
+import com.android.volley.DefaultRetryPolicy
 import org.json.JSONObject
 
 
@@ -32,7 +33,10 @@ class Home_fragment : Fragment(), myInterface {
     private lateinit var arrStudentRequest:ArrayList<studentRequest_model>
     private lateinit var adapter: studentRequest_RecyclerAdapter
 
-    fun <T> addtoRequestQueue(request: Request<T>){
+    fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
 
@@ -164,7 +168,7 @@ class Home_fragment : Fragment(), myInterface {
             }
 
         }
-        addtoRequestQueue(request)
+        addtoRequestQueue(request, 30000)
 
     }
 

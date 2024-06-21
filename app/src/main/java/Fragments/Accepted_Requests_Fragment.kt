@@ -155,7 +155,7 @@ class Accepted_Requests_Fragment : Fragment() {
             }
 
         }
-        addtoRequestQueue(request, 20000)
+        addtoRequestQueue(request, 30000)
 
     }
 
