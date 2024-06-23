@@ -60,6 +60,10 @@ dependencies {
     //sdp
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
 
+    // swipe refresh
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //In-app Update
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
 
 }
