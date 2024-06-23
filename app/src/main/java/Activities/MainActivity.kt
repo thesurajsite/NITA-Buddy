@@ -11,8 +11,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
+import android.util.Log
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -27,7 +29,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vibrator: Vibrator
     private lateinit var jsonObject: JSONObject
 
-    fun <T> addtoRequestQueue(request: Request<T>){
+    fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
 
@@ -98,7 +103,8 @@ class MainActivity : AppCompatActivity() {
                 }
             },
             {
-                Toast.makeText(this, "Some Error Occurred", Toast.LENGTH_SHORT).show()
+                Log.d("expire check error", "Error: $it")
+                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
             }
         ) {
             // Override getHeaders to add the Authorization header
@@ -110,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        addtoRequestQueue(request)
+        addtoRequestQueue(request, 30000)
 
     }
 

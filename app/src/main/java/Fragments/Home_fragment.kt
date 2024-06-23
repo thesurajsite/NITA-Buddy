@@ -41,7 +41,7 @@ class Home_fragment : Fragment(), myInterface {
     }
 
     private val requestQueue: RequestQueue by lazy {
-        Volley.newRequestQueue(requireContext())
+        Volley.newRequestQueue(context)
     }
 
 
@@ -140,8 +140,6 @@ class Home_fragment : Fragment(), myInterface {
 
                     }
                     adapter.notifyDataSetChanged()
-//                    Log.d("nitcheckorder", "$nitOrderArray")
-//                    Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
 
                     if(arrStudentRequest.isEmpty()){
                         binding.nothingToShowImage.visibility=View.VISIBLE
@@ -153,7 +151,7 @@ class Home_fragment : Fragment(), myInterface {
                 }
 
             },{
-                Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Unable to fetch Requests", Toast.LENGTH_SHORT).show()
                 Log.e("student-requests", "Error: ${it.message}")
                 binding.ProgressBar.visibility=View.INVISIBLE
 
@@ -168,7 +166,11 @@ class Home_fragment : Fragment(), myInterface {
             }
 
         }
-        addtoRequestQueue(request, 30000)
+
+
+        context?.let {
+            addtoRequestQueue(request, 30000)
+        }
 
     }
 

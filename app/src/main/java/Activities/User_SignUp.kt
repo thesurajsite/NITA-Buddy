@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
@@ -23,7 +24,10 @@ class User_SignUp : AppCompatActivity() {
     private lateinit var jsonObject: JSONObject
     private lateinit var vibrator: Vibrator
 
-    fun <T> addToRequestQueue(request: Request<T>) {
+    fun <T> addToRequestQueue(request: Request<T>, timeoutMillis: Int) {
+        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
         requestQueue.add(request)
     }
 
@@ -121,7 +125,7 @@ class User_SignUp : AppCompatActivity() {
             }
         )
 
-        addToRequestQueue(request)
+        addToRequestQueue(request, 30000)
     }
 
     private fun otpverification() {
@@ -163,7 +167,7 @@ class User_SignUp : AppCompatActivity() {
                    }
                )
 
-               addToRequestQueue(request)
+               addToRequestQueue(request, 30000)
 
 
            }

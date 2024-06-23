@@ -25,7 +25,8 @@ import org.json.JSONObject
 
 class studentRequest_RecyclerAdapter(
     val context: Context,
-    val arrStudentRequest: ArrayList<studentRequest_model>, val myInterface: myInterface
+    val arrStudentRequest: ArrayList<studentRequest_model>,
+    val myInterface: myInterface
 ) : RecyclerView.Adapter<studentRequest_RecyclerAdapter.ViewHolder>() {
 
     private lateinit var jsonObject: JSONObject

@@ -85,7 +85,7 @@ class User_Login_Activity : AppCompatActivity() {
                     }
                 )
 
-                addtoRequestQueue(request, 20000)
+                addtoRequestQueue(request, 30000)
 
             }
             else{
