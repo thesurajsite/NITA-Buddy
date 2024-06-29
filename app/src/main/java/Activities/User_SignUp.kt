@@ -51,6 +51,7 @@ class User_SignUp : AppCompatActivity() {
             val year = binding.yearSpinner.selectedItem.toString()
             val phoneNo = binding.phoneEt.text.toString()
             val password = binding.passwordEt.text.toString()
+            val confirmPassword = binding.confirmPasswordEt.text.toString()
             val branch = binding.branchSpinner.selectedItem.toString()
             val hostel = binding.hostelSpinner.selectedItem.toString()
             val enrollmentNo = binding.enrollmentEt.text.toString()
@@ -67,8 +68,11 @@ class User_SignUp : AppCompatActivity() {
             )
 
 
-
-            if(name!="" && year!="Select Year" && phoneNo!="" && password!="" && branch!="Select Branch" && hostel!="Select Hostel" && enrollmentNo!="")
+            if(!password.equals(confirmPassword))
+            {
+                Toast.makeText(this, "Please Enter Same Password", Toast.LENGTH_SHORT).show()
+            }
+            else if(name!="" && year!="Select Year" && phoneNo!="" && password!="" && branch!="Select Branch" && hostel!="Select Hostel" && enrollmentNo!="")
             {
                 signUpUsingVolley(signUpData)
             }
@@ -125,7 +129,7 @@ class User_SignUp : AppCompatActivity() {
             }
         )
 
-        addToRequestQueue(request, 30000)
+        addToRequestQueue(request, 120000)
     }
 
     private fun otpverification() {
@@ -167,7 +171,7 @@ class User_SignUp : AppCompatActivity() {
                    }
                )
 
-               addToRequestQueue(request, 30000)
+               addToRequestQueue(request, 120000)
 
 
            }
