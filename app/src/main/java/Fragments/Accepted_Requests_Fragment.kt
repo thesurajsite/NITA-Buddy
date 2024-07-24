@@ -131,6 +131,9 @@ class Accepted_Requests_Fragment : Fragment() {
                         else if(storeName=="Joydip"){
                             image= R.drawable.wow
                         }
+                        else if(storeName=="Shopping Complex"){
+                            image= R.drawable.shopping
+                        }
 
                         arrAcceptedRequest.add(acceptedRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo, year, hostel, enrollmentNo, branch))
 

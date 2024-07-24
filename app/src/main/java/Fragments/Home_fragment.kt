@@ -135,6 +135,9 @@ class Home_fragment : Fragment(), myInterface {
                         else if(storeName=="Joydip"){
                             image= R.drawable.wow
                         }
+                        else if(storeName=="Shopping Complex"){
+                            image= R.drawable.shopping
+                        }
 
                         arrStudentRequest.add(studentRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo, year, hostel, enrollmentNo, branch))
 

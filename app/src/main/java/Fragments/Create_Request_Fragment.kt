@@ -299,6 +299,61 @@ class Create_Request_Fragment : Fragment() {
             }
 
         }
+
+
+        binding.shoppingComplexOrder.setOnClickListener {
+            vibrator.vibrate(50)
+            dialog.show()
+            dialogEditText.setText("")
+
+            dialogButton.setOnClickListener {
+
+                vibrator.vibrate(50)
+                Toast.makeText(requireContext(), "Creating Request...", Toast.LENGTH_SHORT).show()
+                val orderDetails=dialogEditText.text.toString()
+
+                jsonObject= JSONObject()
+                jsonObject.put("orderPoint", "Shopping Complex")
+                jsonObject.put("type", "shopping")
+                jsonObject.put("storeName", "Shopping Complex")
+                jsonObject.put("orderDetails", orderDetails)
+                jsonObject.put("orderTime", currentTime().toString())
+
+                val request=object : JsonObjectRequest(
+                    Method.POST, url, jsonObject,
+                    { jsonData->
+                        val action=jsonData.getBoolean("action")
+                        val response=jsonData.getString("response")
+                        Toast.makeText(requireContext(), "$response", Toast.LENGTH_SHORT).show()
+                        Log.d("Request-Call", "jsonData: $jsonData || action: $action || response: $response")
+                        dialog.dismiss()
+
+
+                    },{
+                        Toast.makeText(requireContext(), "${it.message}", Toast.LENGTH_SHORT).show()
+                        Log.w("Request-Call", "${it.message}")
+                        dialog.dismiss()
+
+                    }
+                ){
+                    override fun getHeaders(): MutableMap<String, String>{
+                        val headers=HashMap<String, String>()
+                        val token=SharedPreferencesManager.getUserToken()
+                        headers["Authorization"]="Bearer $token"
+                        return headers
+                    }
+                }
+
+                addtoRequestQueue(request)
+
+            }
+
+        }
+
+
+
+
+
         return binding.root
     }
 

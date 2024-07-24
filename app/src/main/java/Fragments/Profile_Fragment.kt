@@ -149,7 +149,7 @@ class Profile_Fragment : Fragment() {
                             image= R.drawable.flipkart
                         }
                         else if(store=="Samrat"){
-                            image= R.drawable.flipkart
+                            image= R.drawable.samrat
                         }
                         else if(store=="John"){
                             image= R.drawable.john
@@ -157,6 +157,9 @@ class Profile_Fragment : Fragment() {
                         else if(store=="Joydip"){
                             image= R.drawable.wow
                             store="Wow"
+                        }
+                        else if(store=="Shopping Complex"){
+                            image= R.drawable.shopping
                         }
 
                         store = store.substring(0,1).toUpperCase()+store.substring(1)
