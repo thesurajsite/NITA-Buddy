@@ -7,17 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context="NITABuddy.Activities.User_SignUp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="A Gharaana Product"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:fontFamily="@font/allerta_stencil"
-        android:textSize="15dp" />
+    tools:context="NITABuddy.Authentication.User_SignUp">
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,6 +48,62 @@
         android:textSize="25dp" />
 
     <EditText
+      android:id="@+id/email_et"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="20dp"
+      android:layout_marginTop="10dp"
+      android:layout_marginRight="20dp"
+      android:background="@drawable/custom_input"
+      android:drawablePadding="10dp"
+      android:fontFamily="sans-serif"
+      android:hint="Email"
+      android:paddingStart="10dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:textColor="@color/black"
+      android:textColorHint="@color/black"
+      android:textSize="25dp" />
+
+    <EditText
+      android:id="@+id/password_et"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Password"
+      android:textColor="@color/black"
+      android:textColorHint="@color/black"
+      android:background="@drawable/custom_input"
+      android:drawablePadding="10dp"
+      android:textSize="25dp"
+      android:paddingStart="10dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginTop="10dp"
+      android:inputType="textPassword"
+      />
+
+    <EditText
+      android:id="@+id/confirmPassword_et"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:hint="Confirm Password"
+      android:textColor="@color/black"
+      android:textColorHint="@color/black"
+      android:background="@drawable/custom_input"
+      android:drawablePadding="10dp"
+      android:textSize="25dp"
+      android:paddingStart="10dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginTop="10dp"
+      android:inputType="textPassword"
+      />
+
+    <EditText
         android:id="@+id/phone_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -94,43 +140,51 @@
         android:layout_marginTop="10dp"
         />
 
-    <EditText
-        android:id="@+id/password_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:background="@drawable/custom_input"
-        android:drawablePadding="10dp"
-        android:textSize="25dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"
-        />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/confirmPassword_et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Confirm Password"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:background="@drawable/custom_input"
-        android:drawablePadding="10dp"
-        android:textSize="25dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="textPassword"
-        />
+        <Spinner
+          android:id="@+id/branch_spinner"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:hint="Branch"
+          android:textColor="@color/black"
+          android:textColorHint="@color/black"
+          android:background="@drawable/custom_input"
+          android:drawablePadding="10dp"
+          android:textSize="25dp"
+          android:paddingStart="10dp"
+          android:paddingTop="5dp"
+          android:paddingBottom="5dp"
+          android:layout_marginRight="5dp"
+          android:layout_marginLeft="20dp"
+          android:layout_marginTop="10dp"
+          android:inputType="number"
+          />
+
+        <Spinner
+          android:id="@+id/year_spinner"
+          android:layout_width="0dp"
+          android:layout_weight="1"
+          android:layout_height="wrap_content"
+          android:hint="Year"
+          android:textColorHint="@color/black"
+          android:background="@drawable/custom_input"
+          android:drawablePadding="10dp"
+          android:textColor="@color/black"
+          android:textSize="25dp"
+          android:paddingStart="10dp"
+          android:paddingTop="5dp"
+          android:paddingBottom="5dp"
+          android:layout_marginRight="20dp"
+          android:layout_marginTop="10dp"
+          android:inputType="number"
+          />
+
+    </LinearLayout>
 
     <Spinner
         android:id="@+id/hostel_spinner"
@@ -148,43 +202,6 @@
         android:inputType="number"
         />
 
-    <Spinner
-        android:id="@+id/branch_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Branch"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:background="@drawable/custom_input"
-        android:drawablePadding="10dp"
-        android:textSize="25dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="number"
-        />
-
-    <Spinner
-        android:id="@+id/year_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Year"
-        android:textColorHint="@color/black"
-        android:background="@drawable/custom_input"
-        android:drawablePadding="10dp"
-        android:textColor="@color/black"
-        android:textSize="25dp"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="10dp"
-        android:inputType="number"
-        />
 
     <EditText
         android:visibility="gone"
@@ -211,7 +228,7 @@
         android:id="@+id/getOTP_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Signup With OTP"
+        android:text="Create Account"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_marginLeft="20dp"
@@ -253,7 +270,7 @@
         android:text="Already have an account? Login Here"
         android:textColor="@color/blue"
         android:textSize="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_20sdp"/>
+        android:layout_marginTop="@dimen/_10sdp"/>
 
 
 </LinearLayout>

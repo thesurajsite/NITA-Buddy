@@ -67,4 +67,11 @@ dependencies {
     implementation("com.google.android.play:app-update-ktx:2.1.0")
     implementation(kotlin("script-runtime"))
 
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.1.21")
+
+
 }

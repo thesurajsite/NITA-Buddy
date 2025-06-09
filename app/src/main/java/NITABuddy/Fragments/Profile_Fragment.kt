@@ -1,6 +1,6 @@
 package NITABuddy.Fragments
 
-import NITABuddy.Activities.User_Login_Activity
+import NITABuddy.Authentication.User_Login_Activity
 import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
@@ -162,7 +162,12 @@ class Profile_Fragment : Fragment() {
                             image= R.drawable.shopping
                         }
 
-                        store = store.substring(0,1).toUpperCase()+store.substring(1)
+                        store = if (store.isNotEmpty()) {
+                            store.substring(0, 1).uppercase() + store.substring(1)
+                        } else {
+                            store
+                        }
+
 
                         // Create a myRequest_model object and add it to the ArrayList
                         arrMyRequest.add(myRequest_model(image,orderId, type, store, orderTime, orderstatus, orderDetails, orderPoint, studentName, enrollmentNo, branch, year, hostel, phoneNo))

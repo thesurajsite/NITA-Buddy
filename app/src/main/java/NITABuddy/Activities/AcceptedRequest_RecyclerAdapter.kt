@@ -62,8 +62,8 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
         val verifyOtpLayout=itemView.findViewById<LinearLayout>(R.id.verifyOtpLayout)
         val otpEditText=itemView.findViewById<EditText>(R.id.otpEditText)
         val verifyOtp=itemView.findViewById<Button>(R.id.verifyOTP)
-        
-        
+
+
 //        val acceptRequest=itemView.findViewById<TextView>(R.id.acceptRequest)
 
 
@@ -144,7 +144,7 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             intent.putExtra("phoneNo", arrAcceptedRequest[position].phoneNo)
             context.startActivity(intent)
         }
-        
+
         holder.verifyOtp.setOnClickListener {
 
             holder.vibrator.vibrate(50)
@@ -192,8 +192,8 @@ class acceptedRequest_RecyclerAdapter(val context: Context,val arrAcceptedReques
             addtoRequestQueue(request)
 
         }
-        
-        
+
+
 
 
 

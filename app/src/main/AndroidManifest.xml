@@ -19,11 +19,11 @@
             android:name="NITABuddy.Activities.student_details"
             android:exported="false" />
         <activity
-            android:name="NITABuddy.Activities.User_Login_Activity"
+            android:name="NITABuddy.Authentication.User_Login_Activity"
             android:exported="false"
             android:theme="@style/Theme.SignupLoginActivity" />
         <activity
-            android:name="NITABuddy.Activities.User_SignUp"
+            android:name="NITABuddy.Authentication.User_SignUp"
             android:exported="false"
             android:theme="@style/Theme.SignupLoginActivity" />
         <activity

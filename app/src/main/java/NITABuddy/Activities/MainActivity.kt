@@ -1,5 +1,6 @@
 package NITABuddy.Activities
 
+import NITABuddy.Authentication.User_Login_Activity
 import NITABuddy.Fragments.Accepted_Requests_Fragment
 import NITABuddy.Fragments.Create_Request_Fragment
 import NITABuddy.Fragments.Home_fragment
@@ -42,8 +43,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
     private lateinit var vibrator: Vibrator
-    private lateinit var jsonObject: JSONObject
-
+//    private lateinit var jsonObject: JSONObject
     fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
         request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        checkTokenStatus()
+        //checkTokenStatus()
         checkForAppUpdate()
 
 
@@ -107,41 +107,41 @@ class MainActivity : AppCompatActivity() {
    }
 
 
-    // TOken Expire check API
-    private fun checkTokenStatus() {
-        jsonObject= JSONObject()
-        val url = "https://gharaanah.onrender.com/engineering/tokenauth"
-        val request = object : StringRequest(
-            Method.POST, url,
-            { response ->
-                val isTokenValid = response.toBoolean()
-
-                if (isTokenValid){
-                    //Nothing to do
-                    //Toast.makeText(this, "Login Valid", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    Toast.makeText(this, "Login Expired", Toast.LENGTH_SHORT).show()
-                    logout()
-                }
-            },
-            {
-                Log.d("expire check error", "Error: $it")
-                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
-            }
-        ) {
-            // Override getHeaders to add the Authorization header
-            override fun getHeaders(): MutableMap<String, String> {
-                val headers = HashMap<String, String>()
-                val token = SharedPreferencesManager.getUserToken()
-                headers["Authorization"] = "Bearer $token"
-                return headers
-            }
-        }
-
-        addtoRequestQueue(request, 30000)
-
-    }
+//    // TOken Expire check API
+//    private fun checkTokenStatus() {
+//        jsonObject= JSONObject()
+//        val url = "https://gharaanah.onrender.com/engineering/tokenauth"
+//        val request = object : StringRequest(
+//            Method.POST, url,
+//            { response ->
+//                val isTokenValid = response.toBoolean()
+//
+//                if (isTokenValid){
+//                    //Nothing to do
+//                    //Toast.makeText(this, "Login Valid", Toast.LENGTH_SHORT).show()
+//                }
+//                else{
+//                    Toast.makeText(this, "Login Expired", Toast.LENGTH_SHORT).show()
+//                    logout()
+//                }
+//            },
+//            {
+//                Log.d("expire check error", "Error: $it")
+//                Toast.makeText(this, it.toString(), Toast.LENGTH_SHORT).show()
+//            }
+//        ) {
+//            // Override getHeaders to add the Authorization header
+//            override fun getHeaders(): MutableMap<String, String> {
+//                val headers = HashMap<String, String>()
+//                val token = SharedPreferencesManager.getUserToken()
+//                headers["Authorization"] = "Bearer $token"
+//                return headers
+//            }
+//        }
+//
+//        addtoRequestQueue(request, 30000)
+//
+//    }
 
     private fun logout() {
         SharedPreferencesManager.updateLoginState(false)

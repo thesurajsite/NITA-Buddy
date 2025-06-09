@@ -1,13 +1,15 @@
-package NITABuddy.Activities
+package NITABuddy.Authentication
 
+import NITABuddy.Activities.MainActivity
+import NITABuddy.Authentication.User_SignUp
 import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Vibrator
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -23,9 +25,11 @@ class User_Login_Activity : AppCompatActivity() {
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
 
     fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
-        request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
+        request.retryPolicy = DefaultRetryPolicy(
+            timeoutMillis,
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT )
+            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        )
         requestQueue.add(request)
     }
 
@@ -34,7 +38,7 @@ class User_Login_Activity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityUserLoginBinding.inflate(layoutInflater)
+        binding= ActivityUserLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         vibrator=getSystemService(VIBRATOR_SERVICE) as Vibrator
@@ -56,13 +60,13 @@ class User_Login_Activity : AppCompatActivity() {
                 val url = "https://gharaanah.onrender.com/engineering/login"
                 val request= JsonObjectRequest(
                     Request.Method.POST, url, jsonObject,
-                    { jsonData->
-                        binding.Progressbar.visibility= View.INVISIBLE
-                        val action=jsonData.getBoolean("action")
-                        val response=jsonData.getString("response")
+                    { jsonData ->
+                        binding.Progressbar.visibility = View.INVISIBLE
+                        val action = jsonData.getBoolean("action")
+                        val response = jsonData.getString("response")
 
-                        if(action==true){
-                            val token=jsonData.getString("token")
+                        if (action == true) {
+                            val token = jsonData.getString("token")
                             SharedPreferencesManager.updateLoginState(true)
                             SharedPreferencesManager.updateUserToken(token)
 
@@ -70,14 +74,17 @@ class User_Login_Activity : AppCompatActivity() {
                             finish()
 
                             Log.w("login-response", "jsonData= $jsonData jsonObject= $jsonObject")
-                            Log.d("login-response", "action= $action ; response= $response ; token= $token")
+                            Log.d(
+                                "login-response",
+                                "action= $action ; response= $response ; token= $token"
+                            )
                         }
 
                         Toast.makeText(this, response, Toast.LENGTH_SHORT).show()
 
-                    },{
-                        binding.Progressbar.visibility= View.INVISIBLE
-                        if(it.message != null){
+                    }, {
+                        binding.Progressbar.visibility = View.INVISIBLE
+                        if (it.message != null) {
                             Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()  //line 77
                             Log.w("login-response", "${it.message}")
                         }
