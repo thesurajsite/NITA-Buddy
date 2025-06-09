@@ -1,4 +1,4 @@
-package SharedPreferences
+package NITABuddy.SharedPreferences
 
 import android.content.Context
 import android.content.SharedPreferences

@@ -1,12 +1,11 @@
-package Activities
+package NITABuddy.Activities
 
-import Fragments.Accepted_Requests_Fragment
-import Fragments.Create_Request_Fragment
-import Fragments.Home_fragment
-import Fragments.Profile_Fragment
-import Fragments.Rewards_Fragment
-import SharedPreferences.SharedPreferencesManager
-import android.content.Context
+import NITABuddy.Fragments.Accepted_Requests_Fragment
+import NITABuddy.Fragments.Create_Request_Fragment
+import NITABuddy.Fragments.Home_fragment
+import NITABuddy.Fragments.Profile_Fragment
+import NITABuddy.Fragments.Rewards_Fragment
+import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
 
         SharedPreferencesManager= SharedPreferencesManager(this)
-        vibrator=getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator=getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         //If User Not Logged In, Send it to Login Activity
         if(SharedPreferencesManager.getLoginState()==false){

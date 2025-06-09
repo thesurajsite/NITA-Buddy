@@ -1,7 +1,6 @@
-package Activities
+package NITABuddy.Activities
 
 import android.R as AndroidResources
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -40,7 +39,7 @@ class User_SignUp : AppCompatActivity() {
         binding=ActivityUserSignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         //Spinner TextView
         spinner()
@@ -183,19 +182,19 @@ class User_SignUp : AppCompatActivity() {
         // Hostel Spinner
         val list_of_hostels= arrayListOf<String>("Select Hostel","Aryabhatta", "RNT", "Gargi")
         val hostelSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_hostels)
-        hostelSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        hostelSpinnerAdapter.setDropDownViewResource(AndroidResources.layout.simple_spinner_dropdown_item)
         binding.hostelSpinner.adapter=hostelSpinnerAdapter
 
         //Branch Spinner
         val list_of_branch= arrayListOf<String>("Select Branch", "Computer Science", "Electronics", "Mechanical", "Civil", "Electrical", "Chemical", "Production", "Instrumentation", "BioTech", "IIIT")
         val branchSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_branch)
-        branchSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        branchSpinnerAdapter.setDropDownViewResource(AndroidResources.layout.simple_spinner_dropdown_item)
         binding.branchSpinner.adapter=branchSpinnerAdapter
 
         //Year Spinner
         val list_of_year= arrayListOf<String>("Select Year", "1st Year", "2nd Year", "3rd Year", "4th Year")
         val yearSpinnerAdapter= ArrayAdapter(this, AndroidResources.layout.simple_spinner_item, list_of_year)
-        yearSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        yearSpinnerAdapter.setDropDownViewResource(AndroidResources.layout.simple_spinner_dropdown_item)
         binding.yearSpinner.adapter=yearSpinnerAdapter
 
     }

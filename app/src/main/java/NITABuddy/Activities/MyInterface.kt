@@ -1,4 +1,4 @@
-package Activities
+package NITABuddy.Activities
 
 interface myInterface {
 

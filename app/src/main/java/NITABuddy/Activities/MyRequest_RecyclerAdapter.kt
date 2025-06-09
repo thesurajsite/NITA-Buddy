@@ -1,7 +1,7 @@
-package Activities
+package NITABuddy.Activities
 
 
-import SharedPreferences.SharedPreferencesManager
+import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
 import android.os.Vibrator

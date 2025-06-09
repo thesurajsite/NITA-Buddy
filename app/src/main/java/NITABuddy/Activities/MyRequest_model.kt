@@ -1,4 +1,4 @@
-package Activities
+package NITABuddy.Activities
 
 class myRequest_model (
     var image: Int,

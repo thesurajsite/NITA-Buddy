@@ -1,6 +1,6 @@
-package Fragments
+package NITABuddy.Fragments
 
-import SharedPreferences.SharedPreferencesManager
+import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment

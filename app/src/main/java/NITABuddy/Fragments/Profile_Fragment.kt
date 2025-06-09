@@ -1,7 +1,7 @@
-package Fragments
+package NITABuddy.Fragments
 
-import Activities.User_Login_Activity
-import SharedPreferences.SharedPreferencesManager
+import NITABuddy.Activities.User_Login_Activity
+import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -21,8 +21,8 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.gharaana.nitabuddy.R
 import com.gharaana.nitabuddy.databinding.FragmentProfileBinding
-import Activities.myRequest_RecyclerAdapter
-import Activities.myRequest_model
+import NITABuddy.Activities.myRequest_RecyclerAdapter
+import NITABuddy.Activities.myRequest_model
 import com.android.volley.DefaultRetryPolicy
 import org.json.JSONObject
 

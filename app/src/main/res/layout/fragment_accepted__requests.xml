@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="Fragments.Accepted_Requests_Fragment"
+    tools:context="NITABuddy.Fragments.Accepted_Requests_Fragment"
     android:background="@color/blue">
 
     <androidx.core.widget.NestedScrollView

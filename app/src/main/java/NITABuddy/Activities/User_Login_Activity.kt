@@ -1,7 +1,6 @@
-package Activities
+package NITABuddy.Activities
 
-import SharedPreferences.SharedPreferencesManager
-import android.content.Context
+import NITABuddy.SharedPreferences.SharedPreferencesManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -38,7 +37,7 @@ class User_Login_Activity : AppCompatActivity() {
         binding=ActivityUserLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        vibrator=getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        vibrator=getSystemService(VIBRATOR_SERVICE) as Vibrator
         SharedPreferencesManager= SharedPreferencesManager(this)
 
 

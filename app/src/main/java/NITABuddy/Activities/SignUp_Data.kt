@@ -1,4 +1,4 @@
-package Activities
+package NITABuddy.Activities
 
 data class SignUp_Data(
     val branch: String,

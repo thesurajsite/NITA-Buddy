@@ -1,53 +1,37 @@
-package Fragments
+package NITABuddy.Fragments
 
-import SharedPreferences.SharedPreferencesManager
+import NITABuddy.SharedPreferences.SharedPreferencesManager
+import android.content.Context.VIBRATOR_SERVICE
 import android.os.Bundle
+import android.os.Vibrator
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.gharaana.nitabuddy.R
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import Activities.acceptedRequest_RecyclerAdapter
-import Activities.acceptedRequest_model
-import com.gharaana.nitabuddy.databinding.FragmentAcceptedRequestsBinding
+import com.gharaana.nitabuddy.R
+import com.gharaana.nitabuddy.databinding.FragmentHomeBinding
+import NITABuddy.Activities.myInterface
+import NITABuddy.Activities.studentRequest_RecyclerAdapter
+import NITABuddy.Activities.studentRequest_model
+import com.android.volley.DefaultRetryPolicy
 import org.json.JSONObject
 
 
-class Accepted_Requests_Fragment : Fragment() {
+class Home_fragment : Fragment(), myInterface {
 
-    lateinit var binding: FragmentAcceptedRequestsBinding
-    private lateinit var arrAcceptedRequest:ArrayList<acceptedRequest_model>
-    private lateinit var adapter: acceptedRequest_RecyclerAdapter
+    lateinit var binding: FragmentHomeBinding
     private lateinit var jsonObject: JSONObject
     private lateinit var SharedPreferencesManager: SharedPreferencesManager
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding=FragmentAcceptedRequestsBinding.inflate(inflater, container, false)
-        SharedPreferencesManager= SharedPreferencesManager(requireContext())
-
-        acceptedRequestRecyclerView()
-        fetchAcceptedRequests()
-
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            acceptedRequestRecyclerView()
-            fetchAcceptedRequests()
-            binding.swipeRefreshLayout.isRefreshing=false
-        }
-
-        return binding.root
-    }
+    private lateinit var vibrator: Vibrator
+    private lateinit var arrStudentRequest:ArrayList<studentRequest_model>
+    private lateinit var adapter: studentRequest_RecyclerAdapter
 
     fun <T> addtoRequestQueue(request: Request<T>, timeoutMillis: Int) {
         request.retryPolicy = DefaultRetryPolicy( timeoutMillis,
@@ -56,42 +40,62 @@ class Accepted_Requests_Fragment : Fragment() {
         requestQueue.add(request)
     }
 
-
     private val requestQueue: RequestQueue by lazy {
-        Volley.newRequestQueue(requireContext())
+        Volley.newRequestQueue(context)
     }
 
 
-    private fun acceptedRequestRecyclerView() {
-        arrAcceptedRequest= ArrayList()
-        adapter= acceptedRequest_RecyclerAdapter(requireContext(), arrAcceptedRequest)
-        binding.acceptedRequestRecyclerView.adapter=adapter
-        binding.acceptedRequestRecyclerView.layoutManager= LinearLayoutManager(requireContext())
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.amazon,"GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "Suraj Verma","7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.flipkart,"GHIN12345","parcel", "Flipkart", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2","Sunny Kumar" ,"7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.amazon,"GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "Suraj Verma","7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.flipkart,"GHIN12345","parcel", "Flipkart", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2","Sunny Kumar" ,"7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.amazon,"GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "Suraj Verma","7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.flipkart,"GHIN12345","parcel", "Flipkart", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2","Sunny Kumar" ,"7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.amazon,"GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "Suraj Verma","7667484399"))
-//        arrAcceptedRequest.add(acceptedRequest_model(R.drawable.flipkart,"GHIN12345","parcel", "Flipkart", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2","Sunny Kumar" ,"7667484399"))
+        SharedPreferencesManager= SharedPreferencesManager(requireContext())
+        vibrator=requireContext().getSystemService(VIBRATOR_SERVICE) as Vibrator
 
+        studentRequestRecyclerView()
+        fetchStudentsRequest()
+
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+
+            studentRequestRecyclerView()
+            fetchStudentsRequest()
+            binding.swipeRefreshLayout.isRefreshing=false
+
+
+        }
+
+        if(arrStudentRequest.isEmpty()){
+            binding.nothingToShowImage.visibility=View.VISIBLE
+        }
+        else{
+            binding.nothingToShowImage.visibility=View.GONE
+        }
+
+
+
+        return binding.root
     }
 
-    private fun fetchAcceptedRequests() {
+    override fun fetchStudentsRequest() {
+
         binding.ProgressBar.visibility=View.VISIBLE
+//        Toast.makeText(requireContext(), "Fetching Requests for you...", Toast.LENGTH_SHORT).show()
 
         //API Call
         jsonObject= JSONObject()
-        val url = "https://gharaanah.onrender.com/engineering/buddy"
+        val url = "https://gharaanah.onrender.com/engineering/requests"
         val request = object : JsonObjectRequest(
             Method.GET, url, jsonObject,
             { jsonData->
-                binding.ProgressBar.visibility=View.GONE
+                binding.ProgressBar.visibility=View.INVISIBLE
                 val action=jsonData.getBoolean("action")
                 if(action){
-                    val nitOrderArray= jsonData.getJSONArray("orderNITList")
+
+                    val nitOrderArray= jsonData.getJSONArray("nitCheckOrder")
                     for(i in nitOrderArray.length() - 1 downTo 0){
                         val nitOrderObject=nitOrderArray.getJSONObject(i)
                         val orderDetails=nitOrderObject.getJSONObject("orderNIT")
@@ -123,7 +127,7 @@ class Accepted_Requests_Fragment : Fragment() {
                             image= R.drawable.flipkart
                         }
                         else if(storeName=="Samrat"){
-                            image= R.drawable.flipkart
+                            image= R.drawable.samrat
                         }
                         else if(storeName=="John"){
                             image= R.drawable.john
@@ -135,18 +139,25 @@ class Accepted_Requests_Fragment : Fragment() {
                             image= R.drawable.shopping
                         }
 
-                        arrAcceptedRequest.add(acceptedRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo, year, hostel, enrollmentNo, branch))
+                        arrStudentRequest.add(studentRequest_model(image,orderId,orderType, storeName, orderTime, orderStatus, orderDescription, orderPoint,studentName, phoneNo, year, hostel, enrollmentNo, branch))
 
                     }
                     adapter.notifyDataSetChanged()
 
+                    if(arrStudentRequest.isEmpty()){
+                        binding.nothingToShowImage.visibility=View.VISIBLE
+                    }
+                    else{
+                        binding.nothingToShowImage.visibility=View.GONE
+                    }
+
                 }
 
             },{
-                binding.ProgressBar.visibility=View.GONE
-                Log.e("accepted-requests", "Error: ${it.message}")
-                Toast.makeText(requireContext(), "Some Error Occured", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Unable to fetch Requests", Toast.LENGTH_SHORT).show()
+                Log.e("student-requests", "Error: ${it.message}")
                 binding.ProgressBar.visibility=View.INVISIBLE
+
             }
         ){
             // Override getHeaders to add the Authorization header
@@ -158,9 +169,25 @@ class Accepted_Requests_Fragment : Fragment() {
             }
 
         }
-        addtoRequestQueue(request, 30000)
+
+
+        context?.let {
+            addtoRequestQueue(request, 30000)
+        }
 
     }
+
+    override fun studentRequestRecyclerView() {
+        arrStudentRequest= ArrayList()
+        adapter= studentRequest_RecyclerAdapter(requireContext(), arrStudentRequest, this )
+        binding.studentRequestRecyclerView.adapter=adapter
+        binding.studentRequestRecyclerView.layoutManager=LinearLayoutManager(requireContext())
+
+//        arrStudentRequest.add(studentRequest_model(R.drawable.amazon,"GHIN12345","parcel", "Amazon", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "7667484399"))
+//        arrStudentRequest.add(studentRequest_model(R.drawable.flipkart,"GHIN12345","parcel", "Flipkart", "12:36 | 18-04-24", "Placed", "This is an Order", "Gate 2", "7667484399"))
+
+    }
+
 
 
 }

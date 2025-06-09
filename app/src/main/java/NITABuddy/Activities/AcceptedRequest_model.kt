@@ -1,6 +1,6 @@
-package Activities
+package NITABuddy.Activities
 
-class studentRequest_model (
+class acceptedRequest_model (
     var image: Int,
     var orderId: String,
     var type: String,

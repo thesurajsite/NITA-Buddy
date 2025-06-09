@@ -1,4 +1,4 @@
-package Activities
+package NITABuddy.Activities
 
 import android.content.Context
 import android.content.Intent
@@ -22,7 +22,7 @@ class student_details : AppCompatActivity() {
         // THIS ACTIVITY CONTAINS  THE DETAILS OF THE STUDENTS WHO CREATED A REQUEST
         // WHEN SOMEONE CLICKS ON THE STUDENT NAME FROM THE "REQUESTS FOR YOU" SECTION, THEY WILL COME HERE
 
-        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
 
         val name= intent.getStringExtra("name")
         val branch= intent.getStringExtra("branch")
