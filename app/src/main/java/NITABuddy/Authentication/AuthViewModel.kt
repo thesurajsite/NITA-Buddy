@@ -18,6 +18,7 @@ class AuthViewModel(private val retrofitService: RetrofitService) : ViewModel() 
 
     fun Signup(signupDetails: SignupRequestDataClass){
 
+
         viewModelScope.launch {
             try {
                 val request = signupDetails
